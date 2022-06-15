@@ -1,0 +1,66 @@
+<main id="main" class="main">
+  <div class="col">
+      <div>
+          <h1>Mes Tache A faire</h1>
+      </div>
+
+      <div>
+        <form>
+          <div class="row">
+              <div class="col">
+              <input type="text" class="form-control" placeholder="Ajouter une tache" name="title">
+              </div>
+              <div class="col">
+              <input type="text" class="form-control" placeholder="Description" name="desc">
+              </div>
+              <div class="col">
+                <input type="date" min="{{currentDate | date:'yyyy-MM-dd'}}"class="form-control" name="date">
+              </div>
+              <div class="col">
+              <button type="submit" class="btn btn-primary">Ajouter</button>
+              </div>
+          </div>
+        </form>
+      </div>
+
+      <div>
+        <table class="table table-hover mt-5">
+          <tbody>
+            <tr>
+              <td>Brandon Jacob</td>
+              <td>Designer</td>
+              <td>14/06/2022</td>
+              <td>
+                <button class="btn btn-success me-1">Terminé</button>
+                <button class="btn btn-warning me-1">Modifier</button>
+                <button class="btn btn-danger me-1">Supprimer</button>
+              </td>
+
+            </tr>
+            <tr>
+              <td>Brandon Jacob</td>
+              <td>Designer</td>
+              <td>14/06/2022</td>
+              <td>
+                <button class="btn btn-success me-1">Terminé</button>
+                <button class="btn btn-warning me-1">Modifier</button>
+                <button class="btn btn-danger me-1">Supprimer</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Brandon Jacob</td>
+              <td>Designer</td>
+              <td>14/06/2022</td>
+              <td>
+                <button class="btn btn-success me-1">Terminé</button>
+                <button class="btn btn-warning me-1">Modifier</button>
+                <button class="btn btn-danger me-1">Supprimer</button>
+              </td>            
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+  </div>
+</main>
+
