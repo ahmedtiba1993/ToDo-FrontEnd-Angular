@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user/user.service';
+import { AuthenticationRequest } from 'src/gs-api/src/models';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  authenticationRequest:AuthenticationRequest={};
+  errorMessage ="";
+  email : any
+
+
+  constructor(
+    private userService:UserService,
+    private router:Router
+  ) { }
 
   ngOnInit() {
+    if(localStorage.getItem("accessToken")){
+      this.router.navigate(['']);
+    }
   }
 
+
+  login(){
+    this.userService.login(this.authenticationRequest).subscribe((data)=>{
+      this.userService.setAccessToken(data);
+      this.router.navigate(['']);
+    },  error =>{
+      this.errorMessage=error.error.message;
+    });;
+  }
 }
