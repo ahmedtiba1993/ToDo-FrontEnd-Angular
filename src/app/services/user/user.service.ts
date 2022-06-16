@@ -2,16 +2,18 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationRequest, AuthenticationResponse, UtilisateurDto } from 'src/gs-api/src/models';
-import { AuthenticationControllerService} from 'src/gs-api/src/services';
+import { AuthenticationControllerService, UtilisateurControllerService} from 'src/gs-api/src/services';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  [x: string]: any;
 
   constructor( 
       private authenticationService : AuthenticationControllerService ,
       private router:Router,
+      private utilisateurService : UtilisateurControllerService
       ) { }
 
 
@@ -23,12 +25,16 @@ export class UserService {
     localStorage.setItem("accessToken",JSON.stringify(authenticatcationResponse));
   }
 
- /* setConnectedUser(authenticatcationResponse : AuthenticationResponse) : void{
-    localStorage.setItem('accessToken',JSON.stringify(authenticatcationResponse))
-  }*/
+  getUserByEmail(email : string): Observable<UtilisateurDto>{
+      return this.utilisateurService.findByEmailUsingGET(email);
+  }
 
   setConnectedUser(utilisateur : UtilisateurDto) : void{
     localStorage.setItem('connectedUser' , JSON.stringify(utilisateur))
+  }
+
+  getConnectedUser() : UtilisateurDto{   
+    return JSON.parse(localStorage.getItem('connectedUser') as string);
   }
 }
 

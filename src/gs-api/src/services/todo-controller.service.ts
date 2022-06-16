@@ -20,6 +20,7 @@ class TodoControllerService extends __BaseService {
   static readonly deleteUsingDELETEPath = '/todo/v1/todo/delete/{idTodo}';
   static readonly findByIdUsingGETPath = '/todo/v1/todo/id/{idTodo}';
   static readonly findAllUsingGETPath = '/todo/v1/todos/all';
+  static readonly findAllByUtilisateurIdUsingGETPath = '/todo/v1/todos/utilsateur/{idTodo}';
 
   constructor(
     config: __Configuration,
@@ -187,6 +188,48 @@ class TodoControllerService extends __BaseService {
    */
   findAllUsingGET(): __Observable<Array<TodoDto>> {
     return this.findAllUsingGETResponse().pipe(
+      __map(_r => _r.body as Array<TodoDto>)
+    );
+  }
+
+  /**
+   * Renvoi la liste des todo d'un utilisateur
+   *
+   * Cette methode permet de charcher et renvoyer la liste des todo d'un utilisateur qui existant dans la BDD
+   * @param idTodo idTodo
+   * @return todo a ete supprimer
+   */
+  findAllByUtilisateurIdUsingGETResponse(idTodo: number): __Observable<__StrictHttpResponse<Array<TodoDto>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/todo/v1/todos/utilsateur/${encodeURIComponent(String(idTodo))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<TodoDto>>;
+      })
+    );
+  }
+  /**
+   * Renvoi la liste des todo d'un utilisateur
+   *
+   * Cette methode permet de charcher et renvoyer la liste des todo d'un utilisateur qui existant dans la BDD
+   * @param idTodo idTodo
+   * @return todo a ete supprimer
+   */
+  findAllByUtilisateurIdUsingGET(idTodo: number): __Observable<Array<TodoDto>> {
+    return this.findAllByUtilisateurIdUsingGETResponse(idTodo).pipe(
       __map(_r => _r.body as Array<TodoDto>)
     );
   }

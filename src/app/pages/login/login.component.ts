@@ -30,9 +30,17 @@ export class LoginComponent implements OnInit {
   login(){
     this.userService.login(this.authenticationRequest).subscribe((data)=>{
       this.userService.setAccessToken(data);
+      this.getUserByEmail(); 
       this.router.navigate(['']);
     },  error =>{
       this.errorMessage=error.error.message;
     });;
   }
+
+  getUserByEmail():void{
+    this.userService.getUserByEmail(this.authenticationRequest.login!)
+       .subscribe(user =>{
+        this.userService.setConnectedUser(user)
+       });
+   }
 }
