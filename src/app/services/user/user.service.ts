@@ -36,5 +36,9 @@ export class UserService {
   getConnectedUser() : UtilisateurDto{   
     return JSON.parse(localStorage.getItem('connectedUser') as string);
   }
+
+  sincrire( utilisateur:UtilisateurDto):Observable<UtilisateurDto>{
+    return this.utilisateurService.saveUsingPOST1(utilisateur);
+  }
 }
 

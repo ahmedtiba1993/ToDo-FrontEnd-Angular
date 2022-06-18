@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './composants/header/header.component';
 import { MenuComponent } from './composants/menu/menu.component';
 import { FaireComponent } from './pages/faire/faire.component';
+import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.component';
 
@@ -18,7 +19,8 @@ import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.co
     HeaderComponent,
     FaireComponent,
     LoginComponent,
-    PageDashboardComponent
+    PageDashboardComponent,
+    InscriptionComponent
   ],
   imports: [
     BrowserModule,

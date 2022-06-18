@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.component';
 import { AppicationGuardService } from './services/guard/appication-guard.service';
@@ -7,6 +8,9 @@ import { AppicationGuardService } from './services/guard/appication-guard.servic
 const routes: Routes = [
   {
     path :'login',component: LoginComponent 
+  },
+  {
+    path :'inscrire',component: InscriptionComponent 
   },
   {
     path :'',component: PageDashboardComponent,

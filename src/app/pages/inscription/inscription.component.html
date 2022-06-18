@@ -1,0 +1,111 @@
+<main>
+  <div class="container">
+
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+            <div class="d-flex justify-content-center py-4">
+              <a href="index.html" class="logo d-flex align-items-center w-auto">
+                <img src="assets/img/logo.png" alt="">
+                <span class="d-none d-lg-block">To Do</span>
+              </a>
+            </div><!-- End Logo -->
+
+            <div class="card mb-3">
+
+              <div class="card-body">
+
+                <div class="pt-4 pb-2">
+                  <h5 class="card-title text-center pb-0 fs-4">S’inscrire </h5>
+                </div>
+                
+                <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert" *ngIf="success == true">
+                  votre compte a été ajouté avec succès <br>
+                 <u><a routerLink="/login" style="color:white;">Connecter</a> </u>
+                </div>
+
+                <div class="alert alert-success bg-danger text-light border-0 alert-dismissible fade show" role="alert" *ngIf="errorMsg.length > 0">
+                  <span *ngFor="let msg of errorMsg">{{msg}} <br></span>
+                </div>
+
+                <form class="row g-3 needs-validation" novalidate>
+
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" placeholder="Prénom" name ="prenom"[(ngModel)]="utilisateurDto.prenom" aria-describedby="basic-addon1">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" placeholder="Nom de la famille" name ="nom"[(ngModel)]="utilisateurDto.nom" aria-describedby="basic-addon1">
+                        </div>
+                      </div>                     
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1">@</span>
+                      <input type="text" class="form-control" placeholder="Adresse email" name ="email"[(ngModel)]="utilisateurDto.email" aria-describedby="basic-addon1">
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="input-group mb-3">
+                      <input type="date" class="form-control" placeholder="MDate de naissance" name ="prenom"[(ngModel)]="utilisateurDto.dateDeNaissance" aria-describedby="basic-addon1">
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="input-group mb-3">
+                      <input type="password" class="form-control" placeholder="Mot de passe" name ="mdp"[(ngModel)]="utilisateurDto.mdp" aria-describedby="basic-addon1">
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="input-group mb-3">
+                      <input type="password" class="form-control" placeholder="Confirmer mot de passe" name ="confirmerMdp"[(ngModel)]="utilisateurDto.confirmerMdp" aria-describedby="basic-addon1">
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" name="chacked" [(ngModel)]="chacked" value="test">
+                      <label class="form-check-label" for="acceptTerms">
+                        Je suis d'accord et j'accepte 
+                        <a data-bs-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">les termes et conditions</a>
+                      </label>
+                      <div class="collapse" id="collapseExample">
+                        <div class="card border mt-3">
+                          <ol>
+                            <li>les termes et conditions num 1</li>
+                            <li>les termes et conditions num 2</li>
+                            <li>les termes et conditions num 3</li>
+                            <li>les termes et conditions num 4</li>
+                          </ol>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-primary w-100" type="submit" (click)="inscrire()">S’inscrire</button>
+                  </div>
+                  <div class="col-12">
+                    <p class="small mb-0">Vous avez déjà un compte? <a routerLink="/login" >Connexion</a></p>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+</main><!-- End #main -->

@@ -1,6 +1,7 @@
 /* tslint:disable */
 import { RolesDto } from './roles-dto';
 export interface UtilisateurDto {
+  confirmerMdp?: string;
   dateDeNaissance?: string;
   email?: string;
   id?: number;
