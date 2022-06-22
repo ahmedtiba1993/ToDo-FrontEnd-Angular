@@ -53,6 +53,7 @@ export class OublieMdpComponent implements OnInit {
     this.userService.changerMdpDemande(this.utilisateurDto.email!).subscribe(res=>{
       this.foundUtilisateur = false
       this.continue = true
+      this.errorMessage = []
     })
   }
 

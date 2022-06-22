@@ -16,7 +16,7 @@
             <div class="card mb-3">
 
               <div class="card-body" *ngIf="foundUtilisateur == false && continue == false && veriftoken==false">
-
+                <div class="justify-content-center text-center"><app-loader></app-loader> </div> 
                 <div class="pt-4">
                   <h5 class="card-title text-center pb-0 fs-4">Retrouvez votre compte</h5>
                   <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert" *ngIf="errorMessage.length > 0">
@@ -47,7 +47,8 @@
               </div>
 
               <div class="card-body" *ngIf="foundUtilisateur == true">                          
-                  <div class="col-12">
+                <div class="justify-content-center text-center"><app-loader></app-loader> </div> 
+                <div class="col-12">
                     <div class="pt-4">
                       <h5 class="card-title text-center pb-0 fs-4">Réinitialiser votre mot de passe</h5>
                       <p class="text-center fs-5 text-danger">Utilisateur de ToDo : {{utilisateurDto.nom}} {{utilisateurDto.prenom}}</p>
@@ -67,7 +68,7 @@
               </div>
 
               <div class="card-body" *ngIf="continue == true">
-               
+                <div class="justify-content-center text-center"><app-loader></app-loader> </div> 
                 <div class="pt-4">
                   <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert" *ngIf="errorMessage.length > 0">
                     <span *ngFor="let msg of errorMessage">{{msg}}</span>
