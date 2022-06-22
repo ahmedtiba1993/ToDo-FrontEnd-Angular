@@ -10,6 +10,7 @@ import { MenuComponent } from './composants/menu/menu.component';
 import { FaireComponent } from './pages/faire/faire.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { LoginComponent } from './pages/login/login.component';
+import { OublieMdpComponent } from './pages/oublieMdp/oublieMdp.component';
 import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.component';
 
 @NgModule({
@@ -20,7 +21,8 @@ import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.co
     FaireComponent,
     LoginComponent,
     PageDashboardComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    OublieMdpComponent
   ],
   imports: [
     BrowserModule,

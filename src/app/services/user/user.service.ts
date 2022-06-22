@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthenticationRequest, AuthenticationResponse, UtilisateurDto } from 'src/gs-api/src/models';
+import { AuthenticationRequest, AuthenticationResponse, PasswordResetTokenDto, UtilisateurDto } from 'src/gs-api/src/models';
 import { AuthenticationControllerService, UtilisateurControllerService} from 'src/gs-api/src/services';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -40,5 +39,9 @@ export class UserService {
   sincrire( utilisateur:UtilisateurDto):Observable<UtilisateurDto>{
     return this.utilisateurService.saveUsingPOST1(utilisateur);
   }
-}
 
+  changerMdpDemande(email : string):Observable<null>{
+    return this.utilisateurService.demandeChangerMdpUsingPOST(email);
+  }
+  
+}

@@ -1,0 +1,147 @@
+<main>
+  <div class="container">
+
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+            <div class="d-flex justify-content-center py-4">
+              <a href="index.html" class="logo d-flex align-items-center w-auto">
+                <img src="assets/img/logo.png" alt="">
+                <span class="d-none d-lg-block">To Do</span>
+              </a>
+            </div><!-- End Logo -->
+
+            <div class="card mb-3">
+
+              <div class="card-body" *ngIf="foundUtilisateur == false && continue == false && veriftoken==false">
+
+                <div class="pt-4">
+                  <h5 class="card-title text-center pb-0 fs-4">Retrouvez votre compte</h5>
+                  <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert" *ngIf="errorMessage.length > 0">
+                    {{errorMessage}}
+                  </div>
+                  <p class="text-center small">Veuillez entrer votre adresse e-mail ou votre numéro de mobile pour rechercher votre compte.</p>
+                </div>             
+              
+                <form class="row g-3 needs-validation" novalidate>
+                  <div class="col-12">
+                    <label for="yourUsername" class="form-label">Email</label>
+                    <div class="input-group has-validation">
+                      <span class="input-group-text" id="inputGroupPrepend">@</span>
+                      <input type="email" name="username" class="form-control" id="yourUsername" required email="true" [(ngModel)]="utilisateurDto.email">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="d-flex justify-content-between">
+                      <div>
+                        <button class="btn btn-danger" type="submit" (click)="cancel()">Annuler</button>
+                      </div>
+                      <div>
+                        <button class="btn btn-primary" type="submit"  (click)="recherche()">Rechercher</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="card-body" *ngIf="foundUtilisateur == true">                          
+                  <div class="col-12">
+                    <div class="pt-4">
+                      <h5 class="card-title text-center pb-0 fs-4">Réinitialiser votre mot de passe</h5>
+                      <p class="text-center fs-5 text-danger">Utilisateur de ToDo : {{utilisateurDto.nom}} {{utilisateurDto.prenom}}</p>
+                    </div> 
+                    <p>Envoyer le code par e-mail : {{utilisateurDto.email}}</p>
+                  </div>
+                  <div class="col-12">
+                    <div class="d-flex justify-content-between">
+                      <div>
+                        <button class="btn btn-danger" type="submit" (click)="annuler()">Ce n’est pas vous ?</button>
+                      </div>
+                      <div>
+                        <button class="btn btn-primary" type="submit"  (click)="continuer()">Continuer</button>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="card-body" *ngIf="continue == true">
+               
+                <div class="pt-4">
+                  <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert" *ngIf="errorMessage.length > 0">
+                    <span *ngFor="let msg of errorMessage">{{msg}}</span>
+                  </div>
+                  <h5 class="card-title text-center pb-0 fs-4">Entrez le code de sécurité </h5>
+                  <p class="text-center small">Merci de vérifier dans vos e-mails que vous avez reçu un message avec votre code. </p>
+                </div>             
+              
+                  <div class="col-12">
+                    <p>Nous avons envoyé votre code à : {{utilisateurDto.email}}</p>
+                  </div>
+                  <form class="row g-3 needs-validation" novalidate>
+                    <div class="col-12">
+                      <label for="yourUsername" class="form-label">Entrez le code</label>
+                      <div class="input-group has-validation">
+                        <input type="text" name="username" class="form-control" id="yourUsername" required email="true" [(ngModel)]="verif.token">
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <button class="btn btn-link" (click)="continuer()">Code non reçu ?</button>
+                        </div>
+                        <div>
+                          <button class="btn btn-danger" type="submit" (click)="cancel()">Annuler</button>
+                        </div>
+                        <div>
+                          <button class="btn btn-primary" type="submit"  (click)="verifierToken()">Continuer</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+              </div>
+
+
+              <div class="card-body" *ngIf="veriftoken == true">
+                <div class="pt-4">
+                  <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert" *ngIf="errorMessage.length > 0">
+                    <span *ngFor="let msg of errorMessage">{{msg}}</span>
+                  </div>
+                  <h5 class="card-title text-center pb-0 fs-4">Choisissez un nouveau mot de passe </h5>
+                  <p class="text-center small">Créez un mot de passe</p>
+                </div>             
+                  <form class="row g-3 needs-validation" novalidate>                    
+                    <div class="col-12">
+                      <label for="yourUsername" class="form-label">Nouveau mot de passe</label>
+                      <div class="input-group has-validation">
+                        <input type="password" name="mdp" class="form-control" required email="true" [(ngModel)]="utilisateurDto.mdp">
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label for="yourUsername" class="form-label">Confirmer nouveau mot de passe</label>
+                      <div class="input-group has-validation">
+                        <input type="password" name="mdp2" class="form-control"  required email="true" [(ngModel)]="utilisateurDto.confirmerMdp">
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <button class="btn btn-danger" type="submit" (click)="cancelTout()">Ignorer</button>
+                        </div>
+                        <div>
+                          <button class="btn btn-primary" type="submit"  (click)="changerMdp()">Continuer</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>

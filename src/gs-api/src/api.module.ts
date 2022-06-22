@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationInterface } from './api-configuration';
 
 import { BasicErrorControllerService } from './services/basic-error-controller.service';
+import { SimpleEmailExampleControllerService } from './services/simple-email-example-controller.service';
 import { AuthenticationControllerService } from './services/authentication-controller.service';
 import { TodoControllerService } from './services/todo-controller.service';
 import { UtilisateurControllerService } from './services/utilisateur-controller.service';
@@ -22,6 +23,7 @@ import { UtilisateurControllerService } from './services/utilisateur-controller.
   providers: [
     ApiConfiguration,
     BasicErrorControllerService,
+    SimpleEmailExampleControllerService,
     AuthenticationControllerService,
     TodoControllerService,
     UtilisateurControllerService
