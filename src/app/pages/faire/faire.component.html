@@ -6,18 +6,21 @@
 
       <div>
         <form>
+          <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert" *ngIf="errorMessage.length > 0">
+            <span *ngFor="let msg of errorMessage">{{msg}} <br></span>
+          </div>
           <div class="row">
               <div class="col">
-              <input type="text" class="form-control" placeholder="Ajouter une tache" name="title">
+              <input type="text" class="form-control" placeholder="Ajouter une tache" name="libelleTodo" [(ngModel)]="todo.libelleTodo">
               </div>
               <div class="col">
-              <input type="text" class="form-control" placeholder="Description" name="desc">
+              <input type="text" class="form-control" placeholder="Description" name="descriptionTodo" [(ngModel)]="todo.descriptionTodo">
               </div>
               <div class="col">
-                <input type="date" min="{{currentDate | date:'yyyy-MM-dd'}}"class="form-control" name="date">
+                <input type="date" min="{{currentDate | date:'yyyy-MM-dd'}}"class="form-control" name="dateTodo" [(ngModel)]="todo.dateTodo">
               </div>
               <div class="col">
-              <button type="submit" class="btn btn-primary">Ajouter</button>
+              <button type="submit" class="btn btn-primary" (click)="ajouter()">Ajouter</button>
               </div>
           </div>
         </form>

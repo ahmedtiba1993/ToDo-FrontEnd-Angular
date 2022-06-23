@@ -14,6 +14,8 @@ export class FaireComponent implements OnInit {
   currentDate:any = new Date();
   
   listTodo : Array<TodoDto> = []
+  todo : TodoDto = {}
+  errorMessage : Array<string> = []
 
   constructor(
     private todoService : TodoService
@@ -27,6 +29,18 @@ export class FaireComponent implements OnInit {
     this.todoService.findAllByUtilisateurId()
     .subscribe(res=>{
       this.listTodo = res;
+    })
+  }
+
+  ajouter(){
+    console.log(this.todo.libelleTodo)
+
+    this.todoService.enregistrerTodo(this.todo).subscribe(res=>{
+      this.findAllTodo()
+      this.errorMessage = []
+    },error=>{
+      this.errorMessage = error.error.errors
+      console.log(this.todo.libelleTodo)
     })
   }
 

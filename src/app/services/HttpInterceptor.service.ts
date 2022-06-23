@@ -1,8 +1,9 @@
-import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 import { AuthenticationResponse } from 'src/gs-api/src/models';
 import { LoaderService } from '../composants/loader/service/loader.service';
+import { UserService } from './user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,14 @@ import { LoaderService } from '../composants/loader/service/loader.service';
 export class HttpInterceptorService implements HttpInterceptor{
 
   constructor(
-    private loaderService : LoaderService
+    private loaderService : LoaderService,
+    private userService:UserService
   ) { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
 
+
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
+    
     this.loaderService.show()
 
     let authenticationResponse : AuthenticationResponse={};
@@ -23,7 +27,6 @@ export class HttpInterceptorService implements HttpInterceptor{
       authenticationResponse = JSON.parse(
         localStorage.getItem("accessToken") as string
       );
-   
 
     const authRep = req.clone({
       headers: new HttpHeaders({
@@ -34,6 +37,7 @@ export class HttpInterceptorService implements HttpInterceptor{
     return this.handleRequest(authRep , next)
   }
   return this.handleRequest(req , next)
+  
 }
 
   handleRequest(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>>{

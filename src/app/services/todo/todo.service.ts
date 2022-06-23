@@ -15,6 +15,7 @@ constructor(
 ) { }
 
   enregistrerTodo(todoDto : TodoDto):Observable<TodoDto>{
+    todoDto.utilisateur = this.userService.getConnectedUser()
     return this.todoService.saveUsingPOST(todoDto)
   }
 
