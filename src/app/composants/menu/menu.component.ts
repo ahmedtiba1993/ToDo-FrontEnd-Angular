@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Menu } from './menu';
 
 @Component({
@@ -10,6 +11,7 @@ export class MenuComponent implements OnInit {
 
   public menuProperties : Array<Menu> =[
     /* Tableau de bord */
+    /* Menu */
     {
       id: '1',
       titre: 'Tâches',
@@ -18,23 +20,50 @@ export class MenuComponent implements OnInit {
       sousMenu:[
         {
           id: "11",
-          titre: 'A faire',
+          titre: 'Tout',
           icon: 'bi bi-pie-chart',
-          url: ''
+          url: 'tout'
         },
         {
           id: "12",
+          titre: 'A faire',
+          icon: 'bi bi-pie-chart',
+          url: 'faire'
+        },
+        {
+          id: "13",
           titre: 'Terminé',
           icon: 'bi bi-bar-chart-line',
-          url: 'statistiques'
+          url: 'termine'
         }
       ]
+    },
+    /** menu */
+    {
+      id: '2',
+      titre: 'Ma journée',
+      icon: 'ri-24-hours-fill',
+      url: 'aujourdhui',
+      sousMenu:[]
     }
   ]
   
-  constructor() { }
+  constructor(
+    private router : Router
+  ) { }
+
+  private lastSelectedMenu: Menu | undefined;
 
   ngOnInit() {
   }
 
+  navigate(menu : Menu){
+    if(this.lastSelectedMenu){
+      this.lastSelectedMenu.activate=false;
+    }
+
+    menu.activate = true;
+    this.lastSelectedMenu=menu;
+    this.router.navigate([menu.url]);
+  }
 }

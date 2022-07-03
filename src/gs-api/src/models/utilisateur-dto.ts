@@ -5,7 +5,6 @@ export interface UtilisateurDto {
   dateDeNaissance?: string;
   email?: string;
   id?: number;
-  idEnreprise?: number;
   mdp?: string;
   nom?: string;
   prenom?: string;

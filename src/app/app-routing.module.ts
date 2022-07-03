@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AujourdhuiComponent } from './pages/aujourdhui/aujourdhui.component';
+import { FaireComponent } from './pages/faire/faire.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { LoginComponent } from './pages/login/login.component';
 import { OublieMdpComponent } from './pages/oublieMdp/oublieMdp.component';
 import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.component';
+import { TermineComponent } from './pages/termine/termine.component';
+import { ToutComponent } from './pages/tout/tout.component';
 import { AppicationGuardService } from './services/guard/appication-guard.service';
 
 const routes: Routes = [
@@ -18,8 +22,23 @@ const routes: Routes = [
   },
   {
     path :'',component: PageDashboardComponent,
-    canActivate:[AppicationGuardService]
-  },
+    canActivate:[AppicationGuardService],
+    children:[
+      {
+        path:'aujourdhui',component: AujourdhuiComponent,
+      },
+      {
+        path:'faire',component: FaireComponent 
+      },
+      {
+        path:'termine',component: TermineComponent 
+      },
+      {
+        path:'tout',component: ToutComponent 
+      }
+
+    ]
+  }  
 ];
 
 @NgModule({

@@ -22,26 +22,30 @@ export class FaireComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.findAllTodo()
+    this.findAllNotEnded()
   }
 
-  findAllTodo(){
-    this.todoService.findAllByUtilisateurId()
+  findAllNotEnded(){
+    this.todoService.findAllNotEnded()
     .subscribe(res=>{
       this.listTodo = res;
     })
   }
 
   ajouter(){
-    console.log(this.todo.libelleTodo)
-
     this.todoService.enregistrerTodo(this.todo).subscribe(res=>{
-      this.findAllTodo()
+      this.findAllNotEnded()
       this.errorMessage = []
     },error=>{
       this.errorMessage = error.error.errors
-      console.log(this.todo.libelleTodo)
     })
   }
+
+  termine(td : TodoDto){
+    this.todoService.termine(td.id!).subscribe(res=>{
+      this.findAllNotEnded()
+    })
+  }
+
 
 }

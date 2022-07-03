@@ -1,0 +1,20 @@
+<div class="col">
+  <div>
+      <h1>les taches qui sont Terminées</h1>
+  </div>
+  <div>
+    <table class="table table-hover mt-5">
+      <tbody>
+        <tr *ngFor="let t of listTodo">
+          <td><s>{{t.libelleTodo}}</s></td>
+          <td>{{t.descriptionTodo}}</td>
+          <td>{{t.dateTodo}}</td>
+          <td>
+            <button class="btn btn-warning me-1">Modifier</button>
+            <button class="btn btn-danger me-1">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

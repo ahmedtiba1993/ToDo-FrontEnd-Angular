@@ -16,10 +16,13 @@ import { TodoDto } from '../models/todo-dto';
   providedIn: 'root',
 })
 class TodoControllerService extends __BaseService {
+  static readonly changerEtatUsingPOSTPath = '/todo/v1/todo/changeretat/{idTodo}';
   static readonly saveUsingPOSTPath = '/todo/v1/todo/create';
   static readonly deleteUsingDELETEPath = '/todo/v1/todo/delete/{idTodo}';
   static readonly findByIdUsingGETPath = '/todo/v1/todo/id/{idTodo}';
+  static readonly findAllNotEndedUsingGETPath = '/todo/v1/todos/NotEnded/{idUtilisateur}';
   static readonly findAllUsingGETPath = '/todo/v1/todos/all';
+  static readonly findAllEndedUsingGETPath = '/todo/v1/todos/allEnded/{idUtilisateur}';
   static readonly findAllByUtilisateurIdUsingGETPath = '/todo/v1/todos/utilsateur/{idTodo}';
 
   constructor(
@@ -27,6 +30,42 @@ class TodoControllerService extends __BaseService {
     http: HttpClient
   ) {
     super(config, http);
+  }
+
+  /**
+   * changerEtat
+   * @param idTodo idTodo
+   */
+  changerEtatUsingPOSTResponse(idTodo: number): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/todo/v1/todo/changeretat/${encodeURIComponent(String(idTodo))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * changerEtat
+   * @param idTodo idTodo
+   */
+  changerEtatUsingPOST(idTodo: number): __Observable<null> {
+    return this.changerEtatUsingPOSTResponse(idTodo).pipe(
+      __map(_r => _r.body as null)
+    );
   }
 
   /**
@@ -154,6 +193,44 @@ class TodoControllerService extends __BaseService {
   }
 
   /**
+   * findAllNotEnded
+   * @param idUtilisateur idUtilisateur
+   * @return OK
+   */
+  findAllNotEndedUsingGETResponse(idUtilisateur: number): __Observable<__StrictHttpResponse<Array<TodoDto>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/todo/v1/todos/NotEnded/${encodeURIComponent(String(idUtilisateur))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<TodoDto>>;
+      })
+    );
+  }
+  /**
+   * findAllNotEnded
+   * @param idUtilisateur idUtilisateur
+   * @return OK
+   */
+  findAllNotEndedUsingGET(idUtilisateur: number): __Observable<Array<TodoDto>> {
+    return this.findAllNotEndedUsingGETResponse(idUtilisateur).pipe(
+      __map(_r => _r.body as Array<TodoDto>)
+    );
+  }
+
+  /**
    * Renvoi la liste des todo
    *
    * Cette methode permet de charcher et renvoyer la liste des todo qui existant dans la BDD
@@ -188,6 +265,44 @@ class TodoControllerService extends __BaseService {
    */
   findAllUsingGET(): __Observable<Array<TodoDto>> {
     return this.findAllUsingGETResponse().pipe(
+      __map(_r => _r.body as Array<TodoDto>)
+    );
+  }
+
+  /**
+   * findAllEnded
+   * @param idUtilisateur idUtilisateur
+   * @return OK
+   */
+  findAllEndedUsingGETResponse(idUtilisateur: number): __Observable<__StrictHttpResponse<Array<TodoDto>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/todo/v1/todos/allEnded/${encodeURIComponent(String(idUtilisateur))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<TodoDto>>;
+      })
+    );
+  }
+  /**
+   * findAllEnded
+   * @param idUtilisateur idUtilisateur
+   * @return OK
+   */
+  findAllEndedUsingGET(idUtilisateur: number): __Observable<Array<TodoDto>> {
+    return this.findAllEndedUsingGETResponse(idUtilisateur).pipe(
       __map(_r => _r.body as Array<TodoDto>)
     );
   }
