@@ -17,12 +17,16 @@ import { TodoDto } from '../models/todo-dto';
 })
 class TodoControllerService extends __BaseService {
   static readonly changerEtatUsingPOSTPath = '/todo/v1/todo/changeretat/{idTodo}';
+  static readonly corbeilleUsingPOSTPath = '/todo/v1/todo/corbeille/{idTodo}';
   static readonly saveUsingPOSTPath = '/todo/v1/todo/create';
   static readonly deleteUsingDELETEPath = '/todo/v1/todo/delete/{idTodo}';
   static readonly findByIdUsingGETPath = '/todo/v1/todo/id/{idTodo}';
+  static readonly importantUsingPOSTPath = '/todo/v1/todo/important/{idTodo}';
   static readonly findAllNotEndedUsingGETPath = '/todo/v1/todos/NotEnded/{idUtilisateur}';
   static readonly findAllUsingGETPath = '/todo/v1/todos/all';
   static readonly findAllEndedUsingGETPath = '/todo/v1/todos/allEnded/{idUtilisateur}';
+  static readonly findAllCorbeilleUsingGETPath = '/todo/v1/todos/findAllCorbeille/{idUtilisateur}';
+  static readonly findAllImportantUsingGETPath = '/todo/v1/todos/findAllImportant/{idUtilisateur}';
   static readonly findAllByUtilisateurIdUsingGETPath = '/todo/v1/todos/utilsateur/{idTodo}';
 
   constructor(
@@ -64,6 +68,42 @@ class TodoControllerService extends __BaseService {
    */
   changerEtatUsingPOST(idTodo: number): __Observable<null> {
     return this.changerEtatUsingPOSTResponse(idTodo).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * corbeille
+   * @param idTodo idTodo
+   */
+  corbeilleUsingPOSTResponse(idTodo: number): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/todo/v1/todo/corbeille/${encodeURIComponent(String(idTodo))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * corbeille
+   * @param idTodo idTodo
+   */
+  corbeilleUsingPOST(idTodo: number): __Observable<null> {
+    return this.corbeilleUsingPOSTResponse(idTodo).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -193,6 +233,42 @@ class TodoControllerService extends __BaseService {
   }
 
   /**
+   * important
+   * @param idTodo idTodo
+   */
+  importantUsingPOSTResponse(idTodo: number): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/todo/v1/todo/important/${encodeURIComponent(String(idTodo))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * important
+   * @param idTodo idTodo
+   */
+  importantUsingPOST(idTodo: number): __Observable<null> {
+    return this.importantUsingPOSTResponse(idTodo).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
    * findAllNotEnded
    * @param idUtilisateur idUtilisateur
    * @return OK
@@ -303,6 +379,82 @@ class TodoControllerService extends __BaseService {
    */
   findAllEndedUsingGET(idUtilisateur: number): __Observable<Array<TodoDto>> {
     return this.findAllEndedUsingGETResponse(idUtilisateur).pipe(
+      __map(_r => _r.body as Array<TodoDto>)
+    );
+  }
+
+  /**
+   * findAllCorbeille
+   * @param idUtilisateur idUtilisateur
+   * @return OK
+   */
+  findAllCorbeilleUsingGETResponse(idUtilisateur: number): __Observable<__StrictHttpResponse<Array<TodoDto>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/todo/v1/todos/findAllCorbeille/${encodeURIComponent(String(idUtilisateur))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<TodoDto>>;
+      })
+    );
+  }
+  /**
+   * findAllCorbeille
+   * @param idUtilisateur idUtilisateur
+   * @return OK
+   */
+  findAllCorbeilleUsingGET(idUtilisateur: number): __Observable<Array<TodoDto>> {
+    return this.findAllCorbeilleUsingGETResponse(idUtilisateur).pipe(
+      __map(_r => _r.body as Array<TodoDto>)
+    );
+  }
+
+  /**
+   * findAllImportant
+   * @param idUtilisateur idUtilisateur
+   * @return OK
+   */
+  findAllImportantUsingGETResponse(idUtilisateur: number): __Observable<__StrictHttpResponse<Array<TodoDto>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/todo/v1/todos/findAllImportant/${encodeURIComponent(String(idUtilisateur))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<TodoDto>>;
+      })
+    );
+  }
+  /**
+   * findAllImportant
+   * @param idUtilisateur idUtilisateur
+   * @return OK
+   */
+  findAllImportantUsingGET(idUtilisateur: number): __Observable<Array<TodoDto>> {
+    return this.findAllImportantUsingGETResponse(idUtilisateur).pipe(
       __map(_r => _r.body as Array<TodoDto>)
     );
   }

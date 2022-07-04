@@ -43,4 +43,26 @@ constructor(
     return this.todoService.findAllNotEndedUsingGET(id as number)
   }
 
+  corbeille(id : number):Observable<null>{
+    return this.todoService.corbeilleUsingPOST(id)
+  }
+
+  findAllCorbeille():Observable<TodoDto[]>{
+    const id=this.userService.getConnectedUser().id
+    return this.todoService.findAllCorbeilleUsingGET(id as number)
+  }
+
+  delete(id : number):Observable<null>{
+    return this.todoService.deleteUsingDELETE(id)
+  }
+
+  important(id : number):Observable<null>{
+    return this.todoService.importantUsingPOST(id)
+  }
+
+  findAllImportant():Observable<TodoDto[]>{
+    const id=this.userService.getConnectedUser().id
+    return this.todoService.findAllImportantUsingGET(id as number)
+  }
+
 }

@@ -1,16 +1,24 @@
 <div class="col">
   <div>
-      <h1>les taches qui sont Terminées</h1>
+      <h1>les taches qui sont important</h1>
   </div>
   <div>
     <table class="table table-hover mt-5">
       <tbody>
         <tr *ngFor="let t of listTodo">
-          <td><s>{{t.libelleTodo}}</s></td>
+          <td>
+            <button (click)="importat(t)" type="button" class="btn btn-outline-warning bg-warning">
+              <i class="ri-star-line text-dark"></i>
+            </button>
+          </td>
+          <td>{{t.libelleTodo}}</td>
           <td>{{t.descriptionTodo}}</td>
           <td>{{t.dateTodo}}</td>
           <td>
-            <button class="btn btn-warning me-1" (click)="nonTermine(t)">Non Terminée</button>
+            
+            <button *ngIf="t.etatTodo == true" class="btn btn-warning me-1" (click)="termine(t)">Non Terminée</button>
+            <button *ngIf="t.etatTodo == false" class="btn btn-success me-1" (click)="termine(t)">Terminé</button>
+            
             <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#modalDeleteArt'+t.id">
               <i class="bi bi-trash-fill"></i>vers corbeille
             </button>

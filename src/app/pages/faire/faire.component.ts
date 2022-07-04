@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from 'src/app/services/todo/todo.service';
 import { TodoDto } from 'src/gs-api/src/models';
-import { TodoControllerService } from 'src/gs-api/src/services';
 
 @Component({
   selector: 'app-faire',
@@ -35,6 +34,7 @@ export class FaireComponent implements OnInit {
   ajouter(){
     this.todoService.enregistrerTodo(this.todo).subscribe(res=>{
       this.findAllNotEnded()
+      this.todo={}
       this.errorMessage = []
     },error=>{
       this.errorMessage = error.error.errors
@@ -47,5 +47,15 @@ export class FaireComponent implements OnInit {
     })
   }
 
+  confirmerEtSupprimerTodo(td : TodoDto){
+    this.todoService.corbeille(td.id!).subscribe(res=>{
+      this.findAllNotEnded()
+    })
+  }
 
+  importat(td : TodoDto){
+    this.todoService.important(td.id!).subscribe(res=>{
+      this.findAllNotEnded()
+    })
+  }
 }

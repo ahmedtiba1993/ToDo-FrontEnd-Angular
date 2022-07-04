@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AujourdhuiComponent } from './pages/aujourdhui/aujourdhui.component';
+import { CorbeilleComponent } from './pages/corbeille/corbeille.component';
 import { FaireComponent } from './pages/faire/faire.component';
+import { ImportantComponent } from './pages/important/important.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { LoginComponent } from './pages/login/login.component';
 import { OublieMdpComponent } from './pages/oublieMdp/oublieMdp.component';
@@ -35,7 +37,14 @@ const routes: Routes = [
       },
       {
         path:'tout',component: ToutComponent 
+      },
+      {
+        path:'corbeille',component: CorbeilleComponent 
+      },
+      {
+        path:'important',component: ImportantComponent 
       }
+
 
     ]
   }  

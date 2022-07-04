@@ -1,0 +1,62 @@
+<div class="col">
+  <div>
+      <h1><img src="assets/img/corbeille.png " width="50px">Corbeille</h1>
+  </div>
+  <div>
+    <table class="table table-hover mt-5">
+      <tbody>
+        <tr *ngFor="let t of listTodo">
+          <td>{{t.libelleTodo}}</td>
+          <td>{{t.descriptionTodo}}</td>
+          <td>{{t.dateTodo}}</td>
+          <td>
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" [attr.data-bs-target]="'#modelrest'+t.id">
+              <i class="ri-file-upload-fill"></i>Restaurer
+            </button>
+            <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#modelsupp'+t.id">
+              <i class="ri-delete-bin-2-line"></i>Supprimer définitivement
+            </button>
+          </td>
+          <!-- Model restauration-->
+          <div class="modal fade" id="modelrest{{t.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Confirmation de la restauration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Etes-vous sur de vouloir restaurer cette tache ?
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-slash-circle"></i> Annuler</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="restaurer(t)"><i class="ri-file-upload-fill"></i> Restaurer</button>
+                </div>
+            </div>
+            </div>
+          </div>
+
+          <!-- Model supprission-->
+          <div class="modal fade" id="modelsupp{{t.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Confirmation de la suppression</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Etes-vous sur de vouloir supprimer cette tache ?
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-slash-circle"></i> Annuler</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"  (click)="delete(t)"><i class="ri-delete-bin-2-line"></i>Supprimer définitivement</button>
+                </div>
+            </div>
+            </div>
+          </div>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

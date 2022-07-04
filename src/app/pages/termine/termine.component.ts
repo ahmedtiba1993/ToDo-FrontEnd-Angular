@@ -24,4 +24,16 @@ export class TermineComponent implements OnInit {
       this.listTodo = res
     })
   }
+
+  nonTermine(td : TodoDto){
+    this.todoService.termine(td.id!).subscribe(res=>{
+      this.findAll()
+    })
+  }
+
+  confirmerEtSupprimerTodo(td : TodoDto){
+    this.todoService.corbeille(td.id!).subscribe(res=>{
+      this.findAll()
+    })
+  }
 }

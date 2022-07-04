@@ -45,7 +45,23 @@ export class MenuComponent implements OnInit {
       icon: 'ri-24-hours-fill',
       url: 'aujourdhui',
       sousMenu:[]
+    },
+    {
+      id: '3',
+      titre: 'Important',
+      icon: 'ri-star-line',
+      url: 'important',
+      sousMenu:[]
+    },
+    {
+      id: '4',
+      titre: 'Corbeille',
+      icon: 'ri-delete-bin-2-line',
+      url: 'corbeille',
+      sousMenu:[]
     }
+    
+
   ]
   
   constructor(

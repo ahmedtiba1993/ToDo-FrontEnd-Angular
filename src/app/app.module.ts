@@ -9,7 +9,9 @@ import { HeaderComponent } from './composants/header/header.component';
 import { LoaderComponent } from './composants/loader/loader.component';
 import { MenuComponent } from './composants/menu/menu.component';
 import { AujourdhuiComponent } from './pages/aujourdhui/aujourdhui.component';
+import { CorbeilleComponent } from './pages/corbeille/corbeille.component';
 import { FaireComponent } from './pages/faire/faire.component';
+import { ImportantComponent } from './pages/important/important.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { LoginComponent } from './pages/login/login.component';
 import { OublieMdpComponent } from './pages/oublieMdp/oublieMdp.component';
@@ -31,7 +33,9 @@ import { HttpInterceptorService } from './services/HttpInterceptor.service';
     LoaderComponent,
     AujourdhuiComponent,
     TermineComponent,
-    ToutComponent
+    ToutComponent,
+    CorbeilleComponent,
+    ImportantComponent
   ],
   imports: [
     BrowserModule,
