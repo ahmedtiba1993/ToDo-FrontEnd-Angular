@@ -17,14 +17,14 @@ import { PasswordResetTokenDto } from '../models/password-reset-token-dto';
   providedIn: 'root',
 })
 class UtilisateurControllerService extends __BaseService {
-  static readonly findAllUsingGET1Path = '/todo/v1/utilisateurs/all';
+  static readonly findAllUsingGET2Path = '/todo/v1/utilisateurs/all';
   static readonly demandeChangerMdpUsingPOSTPath = '/todo/v1/utilisateurs/changermdp/demandeChangerMdp/{email}';
   static readonly veriftokenChangerMdpUsingGETPath = '/todo/v1/utilisateurs/changermdp/veriftokenChangerMdp/{idutilisateur}/{token}';
   static readonly changerMdpUsingPOSTPath = '/todo/v1/utilisateurs/changermdp/{idutilisateur}/{token}/{mdp}/{confirmerMdp}';
-  static readonly saveUsingPOST1Path = '/todo/v1/utilisateurs/create';
-  static readonly deleteUsingDELETE1Path = '/todo/v1/utilisateurs/delete/{idUtilisateur}';
+  static readonly saveUsingPOST2Path = '/todo/v1/utilisateurs/create';
+  static readonly deleteUsingDELETE2Path = '/todo/v1/utilisateurs/delete/{idUtilisateur}';
   static readonly findByEmailUsingGETPath = '/todo/v1/utilisateurs/email/{emailUtilisateur}';
-  static readonly findByIdUsingGET1Path = '/todo/v1/utilisateurs/{idUtilisateur}';
+  static readonly findByIdUsingGET2Path = '/todo/v1/utilisateurs/{idUtilisateur}';
 
   constructor(
     config: __Configuration,
@@ -37,7 +37,7 @@ class UtilisateurControllerService extends __BaseService {
    * findAll
    * @return OK
    */
-  findAllUsingGET1Response(): __Observable<__StrictHttpResponse<Array<UtilisateurDto>>> {
+  findAllUsingGET2Response(): __Observable<__StrictHttpResponse<Array<UtilisateurDto>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -62,8 +62,8 @@ class UtilisateurControllerService extends __BaseService {
    * findAll
    * @return OK
    */
-  findAllUsingGET1(): __Observable<Array<UtilisateurDto>> {
-    return this.findAllUsingGET1Response().pipe(
+  findAllUsingGET2(): __Observable<Array<UtilisateurDto>> {
+    return this.findAllUsingGET2Response().pipe(
       __map(_r => _r.body as Array<UtilisateurDto>)
     );
   }
@@ -213,7 +213,7 @@ class UtilisateurControllerService extends __BaseService {
    * @param dto dto
    * @return OK
    */
-  saveUsingPOST1Response(dto: UtilisateurDto): __Observable<__StrictHttpResponse<UtilisateurDto>> {
+  saveUsingPOST2Response(dto: UtilisateurDto): __Observable<__StrictHttpResponse<UtilisateurDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -240,8 +240,8 @@ class UtilisateurControllerService extends __BaseService {
    * @param dto dto
    * @return OK
    */
-  saveUsingPOST1(dto: UtilisateurDto): __Observable<UtilisateurDto> {
-    return this.saveUsingPOST1Response(dto).pipe(
+  saveUsingPOST2(dto: UtilisateurDto): __Observable<UtilisateurDto> {
+    return this.saveUsingPOST2Response(dto).pipe(
       __map(_r => _r.body as UtilisateurDto)
     );
   }
@@ -250,7 +250,7 @@ class UtilisateurControllerService extends __BaseService {
    * delete
    * @param idUtilisateur idUtilisateur
    */
-  deleteUsingDELETE1Response(idUtilisateur: number): __Observable<__StrictHttpResponse<null>> {
+  deleteUsingDELETE2Response(idUtilisateur: number): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -276,8 +276,8 @@ class UtilisateurControllerService extends __BaseService {
    * delete
    * @param idUtilisateur idUtilisateur
    */
-  deleteUsingDELETE1(idUtilisateur: number): __Observable<null> {
-    return this.deleteUsingDELETE1Response(idUtilisateur).pipe(
+  deleteUsingDELETE2(idUtilisateur: number): __Observable<null> {
+    return this.deleteUsingDELETE2Response(idUtilisateur).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -325,7 +325,7 @@ class UtilisateurControllerService extends __BaseService {
    * @param idUtilisateur idUtilisateur
    * @return OK
    */
-  findByIdUsingGET1Response(idUtilisateur: number): __Observable<__StrictHttpResponse<UtilisateurDto>> {
+  findByIdUsingGET2Response(idUtilisateur: number): __Observable<__StrictHttpResponse<UtilisateurDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -352,8 +352,8 @@ class UtilisateurControllerService extends __BaseService {
    * @param idUtilisateur idUtilisateur
    * @return OK
    */
-  findByIdUsingGET1(idUtilisateur: number): __Observable<UtilisateurDto> {
-    return this.findByIdUsingGET1Response(idUtilisateur).pipe(
+  findByIdUsingGET2(idUtilisateur: number): __Observable<UtilisateurDto> {
+    return this.findByIdUsingGET2Response(idUtilisateur).pipe(
       __map(_r => _r.body as UtilisateurDto)
     );
   }

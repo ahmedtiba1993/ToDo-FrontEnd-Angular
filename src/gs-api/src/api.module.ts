@@ -6,6 +6,7 @@ import { ApiConfiguration, ApiConfigurationInterface } from './api-configuration
 import { BasicErrorControllerService } from './services/basic-error-controller.service';
 import { SimpleEmailExampleControllerService } from './services/simple-email-example-controller.service';
 import { AuthenticationControllerService } from './services/authentication-controller.service';
+import { GroupeTodoControllerService } from './services/groupe-todo-controller.service';
 import { TodoControllerService } from './services/todo-controller.service';
 import { UtilisateurControllerService } from './services/utilisateur-controller.service';
 
@@ -25,6 +26,7 @@ import { UtilisateurControllerService } from './services/utilisateur-controller.
     BasicErrorControllerService,
     SimpleEmailExampleControllerService,
     AuthenticationControllerService,
+    GroupeTodoControllerService,
     TodoControllerService,
     UtilisateurControllerService
   ],

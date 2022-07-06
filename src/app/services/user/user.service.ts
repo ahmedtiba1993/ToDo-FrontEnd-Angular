@@ -37,7 +37,7 @@ export class UserService {
   }
 
   sincrire( utilisateur:UtilisateurDto):Observable<UtilisateurDto>{
-    return this.utilisateurService.saveUsingPOST1(utilisateur);
+    return this.utilisateurService.saveUsingPOST2(utilisateur);
   }
 
   changerMdpDemande(email : string):Observable<null>{

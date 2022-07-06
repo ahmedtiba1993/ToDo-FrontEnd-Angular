@@ -23,5 +23,23 @@
       </div>       
     </li><!-- End Components Nav -->
 </ul>
+
+<ul class="sidebar-nav" id="sidebar-nav">
+  <li class="nav-heading">Les projets</li>
+  <li class="nav-item" *ngFor="let grmenu of menuGroupeTodo">
+    <div>
+      <a class="nav-link collapsed" [attr.data-bs-target]="'#nav'+grmenu.id" data-bs-toggle="collapse" href="#">
+        <i class=" ri-align-justify"></i><span>{{grmenu.nom}}</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="nav{{grmenu.id}}" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a><i class="bi bi-circle"></i><span>Tout</span></a>
+          <a><i class="bi bi-circle"></i><span>A faire</span></a>
+          <a><i class="bi bi-circle"></i><span>Terminé</span></a>
+        </li>
+      </ul>
+    </div>       
+  </li><!-- End Components Nav -->
+</ul>
 </aside><!-- End Sidebar-->
 

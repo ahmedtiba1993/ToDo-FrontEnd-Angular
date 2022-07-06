@@ -18,16 +18,16 @@ import { TodoDto } from '../models/todo-dto';
 class TodoControllerService extends __BaseService {
   static readonly changerEtatUsingPOSTPath = '/todo/v1/todo/changeretat/{idTodo}';
   static readonly corbeilleUsingPOSTPath = '/todo/v1/todo/corbeille/{idTodo}';
-  static readonly saveUsingPOSTPath = '/todo/v1/todo/create';
-  static readonly deleteUsingDELETEPath = '/todo/v1/todo/delete/{idTodo}';
-  static readonly findByIdUsingGETPath = '/todo/v1/todo/id/{idTodo}';
+  static readonly saveUsingPOST1Path = '/todo/v1/todo/create';
+  static readonly deleteUsingDELETE1Path = '/todo/v1/todo/delete/{idTodo}';
+  static readonly findByIdUsingGET1Path = '/todo/v1/todo/id/{idTodo}';
   static readonly importantUsingPOSTPath = '/todo/v1/todo/important/{idTodo}';
   static readonly findAllNotEndedUsingGETPath = '/todo/v1/todos/NotEnded/{idUtilisateur}';
-  static readonly findAllUsingGETPath = '/todo/v1/todos/all';
+  static readonly findAllUsingGET1Path = '/todo/v1/todos/all';
   static readonly findAllEndedUsingGETPath = '/todo/v1/todos/allEnded/{idUtilisateur}';
   static readonly findAllCorbeilleUsingGETPath = '/todo/v1/todos/findAllCorbeille/{idUtilisateur}';
   static readonly findAllImportantUsingGETPath = '/todo/v1/todos/findAllImportant/{idUtilisateur}';
-  static readonly findAllByUtilisateurIdUsingGETPath = '/todo/v1/todos/utilsateur/{idTodo}';
+  static readonly findAllByUtilisateurIdUsingGET1Path = '/todo/v1/todos/utilsateur/{idTodo}';
 
   constructor(
     config: __Configuration,
@@ -115,7 +115,7 @@ class TodoControllerService extends __BaseService {
    * @param dto dto
    * @return l'objet todo cree / modifie
    */
-  saveUsingPOSTResponse(dto: TodoDto): __Observable<__StrictHttpResponse<TodoDto>> {
+  saveUsingPOST1Response(dto: TodoDto): __Observable<__StrictHttpResponse<TodoDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -144,8 +144,8 @@ class TodoControllerService extends __BaseService {
    * @param dto dto
    * @return l'objet todo cree / modifie
    */
-  saveUsingPOST(dto: TodoDto): __Observable<TodoDto> {
-    return this.saveUsingPOSTResponse(dto).pipe(
+  saveUsingPOST1(dto: TodoDto): __Observable<TodoDto> {
+    return this.saveUsingPOST1Response(dto).pipe(
       __map(_r => _r.body as TodoDto)
     );
   }
@@ -156,7 +156,7 @@ class TodoControllerService extends __BaseService {
    * Cette methode permet de supprimer un todo par ID
    * @param idTodo idTodo
    */
-  deleteUsingDELETEResponse(idTodo: number): __Observable<__StrictHttpResponse<null>> {
+  deleteUsingDELETE1Response(idTodo: number): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -184,8 +184,8 @@ class TodoControllerService extends __BaseService {
    * Cette methode permet de supprimer un todo par ID
    * @param idTodo idTodo
    */
-  deleteUsingDELETE(idTodo: number): __Observable<null> {
-    return this.deleteUsingDELETEResponse(idTodo).pipe(
+  deleteUsingDELETE1(idTodo: number): __Observable<null> {
+    return this.deleteUsingDELETE1Response(idTodo).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -197,7 +197,7 @@ class TodoControllerService extends __BaseService {
    * @param idTodo idTodo
    * @return todo a ete trouve dans la BDD
    */
-  findByIdUsingGETResponse(idTodo: number): __Observable<__StrictHttpResponse<TodoDto>> {
+  findByIdUsingGET1Response(idTodo: number): __Observable<__StrictHttpResponse<TodoDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -226,8 +226,8 @@ class TodoControllerService extends __BaseService {
    * @param idTodo idTodo
    * @return todo a ete trouve dans la BDD
    */
-  findByIdUsingGET(idTodo: number): __Observable<TodoDto> {
-    return this.findByIdUsingGETResponse(idTodo).pipe(
+  findByIdUsingGET1(idTodo: number): __Observable<TodoDto> {
+    return this.findByIdUsingGET1Response(idTodo).pipe(
       __map(_r => _r.body as TodoDto)
     );
   }
@@ -312,7 +312,7 @@ class TodoControllerService extends __BaseService {
    * Cette methode permet de charcher et renvoyer la liste des todo qui existant dans la BDD
    * @return La liste des todo / une liste vide
    */
-  findAllUsingGETResponse(): __Observable<__StrictHttpResponse<Array<TodoDto>>> {
+  findAllUsingGET1Response(): __Observable<__StrictHttpResponse<Array<TodoDto>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -339,8 +339,8 @@ class TodoControllerService extends __BaseService {
    * Cette methode permet de charcher et renvoyer la liste des todo qui existant dans la BDD
    * @return La liste des todo / une liste vide
    */
-  findAllUsingGET(): __Observable<Array<TodoDto>> {
-    return this.findAllUsingGETResponse().pipe(
+  findAllUsingGET1(): __Observable<Array<TodoDto>> {
+    return this.findAllUsingGET1Response().pipe(
       __map(_r => _r.body as Array<TodoDto>)
     );
   }
@@ -466,7 +466,7 @@ class TodoControllerService extends __BaseService {
    * @param idTodo idTodo
    * @return todo a ete supprimer
    */
-  findAllByUtilisateurIdUsingGETResponse(idTodo: number): __Observable<__StrictHttpResponse<Array<TodoDto>>> {
+  findAllByUtilisateurIdUsingGET1Response(idTodo: number): __Observable<__StrictHttpResponse<Array<TodoDto>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -495,8 +495,8 @@ class TodoControllerService extends __BaseService {
    * @param idTodo idTodo
    * @return todo a ete supprimer
    */
-  findAllByUtilisateurIdUsingGET(idTodo: number): __Observable<Array<TodoDto>> {
-    return this.findAllByUtilisateurIdUsingGETResponse(idTodo).pipe(
+  findAllByUtilisateurIdUsingGET1(idTodo: number): __Observable<Array<TodoDto>> {
+    return this.findAllByUtilisateurIdUsingGET1Response(idTodo).pipe(
       __map(_r => _r.body as Array<TodoDto>)
     );
   }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GroupetodoService } from 'src/app/services/groupetodo/groupetodo.service';
+import { GroupeTodoDto } from 'src/gs-api/src/models';
 import { Menu } from './menu';
 
 @Component({
@@ -9,6 +11,7 @@ import { Menu } from './menu';
 })
 export class MenuComponent implements OnInit {
 
+  public menuGroupeTodo : Array<GroupeTodoDto> = []
   public menuProperties : Array<Menu> =[
     /* Tableau de bord */
     /* Menu */
@@ -65,12 +68,14 @@ export class MenuComponent implements OnInit {
   ]
   
   constructor(
-    private router : Router
+    private router : Router,
+    private grtodoService : GroupetodoService
   ) { }
 
   private lastSelectedMenu: Menu | undefined;
 
   ngOnInit() {
+    this.findAllGroupeTodo()
   }
 
   navigate(menu : Menu){
@@ -82,4 +87,11 @@ export class MenuComponent implements OnInit {
     this.lastSelectedMenu=menu;
     this.router.navigate([menu.url]);
   }
+
+  findAllGroupeTodo(){
+    this.grtodoService.findAllByUtilisateurId().subscribe(res=>{
+      this.menuGroupeTodo = res
+    })
+  }
+
 }

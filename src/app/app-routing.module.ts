@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccueilComponent } from './pages/accueil/accueil.component';
 import { AujourdhuiComponent } from './pages/aujourdhui/aujourdhui.component';
 import { CorbeilleComponent } from './pages/corbeille/corbeille.component';
 import { FaireComponent } from './pages/faire/faire.component';
@@ -26,6 +27,9 @@ const routes: Routes = [
     path :'',component: PageDashboardComponent,
     canActivate:[AppicationGuardService],
     children:[
+      {
+        path:'',component: AccueilComponent,
+      },
       {
         path:'aujourdhui',component: AujourdhuiComponent,
       },

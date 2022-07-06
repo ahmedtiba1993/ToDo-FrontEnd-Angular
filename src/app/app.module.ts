@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './composants/header/header.component';
 import { LoaderComponent } from './composants/loader/loader.component';
 import { MenuComponent } from './composants/menu/menu.component';
+import { AccueilComponent } from './pages/accueil/accueil.component';
 import { AujourdhuiComponent } from './pages/aujourdhui/aujourdhui.component';
 import { CorbeilleComponent } from './pages/corbeille/corbeille.component';
 import { FaireComponent } from './pages/faire/faire.component';
@@ -35,7 +36,8 @@ import { HttpInterceptorService } from './services/HttpInterceptor.service';
     TermineComponent,
     ToutComponent,
     CorbeilleComponent,
-    ImportantComponent
+    ImportantComponent,
+    AccueilComponent
   ],
   imports: [
     BrowserModule,

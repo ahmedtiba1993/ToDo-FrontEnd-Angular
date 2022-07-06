@@ -17,16 +17,16 @@ constructor(
   enregistrerTodo(todoDto : TodoDto):Observable<TodoDto>{
     todoDto.utilisateur = this.userService.getConnectedUser()
     todoDto.etatTodo=false
-    return this.todoService.saveUsingPOST(todoDto)
+    return this.todoService.saveUsingPOST1(todoDto)
   }
 
   findAll():Observable<TodoDto[]>{
-    return this.todoService.findAllUsingGET()
+    return this.todoService.findAllUsingGET1()
   }
 
   findAllByUtilisateurId(): Observable<TodoDto[]>{
     const id=this.userService.getConnectedUser().id
-    return this.todoService.findAllByUtilisateurIdUsingGET(id as number)
+    return this.todoService.findAllByUtilisateurIdUsingGET1(id as number)
   }
 
   termine(id : number):Observable<null>{
@@ -53,7 +53,7 @@ constructor(
   }
 
   delete(id : number):Observable<null>{
-    return this.todoService.deleteUsingDELETE(id)
+    return this.todoService.deleteUsingDELETE1(id)
   }
 
   important(id : number):Observable<null>{
