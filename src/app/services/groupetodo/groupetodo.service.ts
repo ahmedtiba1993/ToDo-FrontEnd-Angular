@@ -15,6 +15,7 @@ constructor(
 ) { }
 
   enregistrerGroupeTodo(dto : GroupeTodoDto):Observable<GroupeTodoDto>{
+    dto.utilisateur = this.userService.getConnectedUser()
     return this.grtodoService.saveUsingPOST(dto)
   }
 

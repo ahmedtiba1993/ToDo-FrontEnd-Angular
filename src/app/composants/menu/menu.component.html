@@ -26,17 +26,22 @@
 
 <ul class="sidebar-nav" id="sidebar-nav">
   <li class="nav-heading">Les projets</li>
+  <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert" *ngIf="errorMessage.length >0">
+    <span *ngFor="let msg of errorMessage">{{msg}}</span>
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">+</span>
+    <input type="text" class="form-control" placeholder="Nouvelle liste" [(ngModel)]="groupetodo.nom" (keyup.enter)="ajouter()">
+  </div>
   <li class="nav-item" *ngFor="let grmenu of menuGroupeTodo">
     <div>
       <a class="nav-link collapsed" [attr.data-bs-target]="'#nav'+grmenu.id" data-bs-toggle="collapse" href="#">
         <i class=" ri-align-justify"></i><span>{{grmenu.nom}}</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="nav{{grmenu.id}}" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          <a><i class="bi bi-circle"></i><span>Tout</span></a>
-          <a><i class="bi bi-circle"></i><span>A faire</span></a>
-          <a><i class="bi bi-circle"></i><span>Terminé</span></a>
-        </li>
+        <li><a href="javascript:void(0);" (click)="navigateVersGrTout(grmenu.id!)"><i class="bi bi-circle"></i><span>Tout</span></a></li>
+        <li><a><i class="bi bi-circle"></i><span>A faire</span></a></li>
+        <li><a><i class="bi bi-circle"></i><span>Terminé</span></a></li>
       </ul>
     </div>       
   </li><!-- End Components Nav -->

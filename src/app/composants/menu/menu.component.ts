@@ -11,7 +11,9 @@ import { Menu } from './menu';
 })
 export class MenuComponent implements OnInit {
 
+  groupetodo : GroupeTodoDto = {}
   public menuGroupeTodo : Array<GroupeTodoDto> = []
+  errorMessage : Array<string> = []
   public menuProperties : Array<Menu> =[
     /* Tableau de bord */
     /* Menu */
@@ -94,4 +96,17 @@ export class MenuComponent implements OnInit {
     })
   }
 
+  ajouter(){
+    this.grtodoService.enregistrerGroupeTodo(this.groupetodo).subscribe(res=>{
+      this.findAllGroupeTodo()
+      this.errorMessage = []
+      this.groupetodo = {}
+    },error=>{
+      this.errorMessage=error.error.errors
+    })
+  }
+
+  navigateVersGrTout(id : number){
+    this.router.navigate(['grtout',id])
+  }
 }

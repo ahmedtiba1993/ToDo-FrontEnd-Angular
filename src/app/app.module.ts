@@ -12,6 +12,7 @@ import { AccueilComponent } from './pages/accueil/accueil.component';
 import { AujourdhuiComponent } from './pages/aujourdhui/aujourdhui.component';
 import { CorbeilleComponent } from './pages/corbeille/corbeille.component';
 import { FaireComponent } from './pages/faire/faire.component';
+import { GrTodoFaireComponent } from './pages/groupetodo/grTodoFaire/grTodoFaire.component';
 import { ImportantComponent } from './pages/important/important.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -37,7 +38,8 @@ import { HttpInterceptorService } from './services/HttpInterceptor.service';
     ToutComponent,
     CorbeilleComponent,
     ImportantComponent,
-    AccueilComponent
+    AccueilComponent,
+    GrTodoFaireComponent
   ],
   imports: [
     BrowserModule,

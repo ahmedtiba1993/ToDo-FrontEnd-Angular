@@ -4,6 +4,7 @@ import { AccueilComponent } from './pages/accueil/accueil.component';
 import { AujourdhuiComponent } from './pages/aujourdhui/aujourdhui.component';
 import { CorbeilleComponent } from './pages/corbeille/corbeille.component';
 import { FaireComponent } from './pages/faire/faire.component';
+import { GrTodoToutComponent } from './pages/groupetodo/grTodoTout/grTodoTout.component';
 import { ImportantComponent } from './pages/important/important.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -47,9 +48,10 @@ const routes: Routes = [
       },
       {
         path:'important',component: ImportantComponent 
+      },
+      {
+        path:'grtout/:idGrTodo',component: GrTodoToutComponent 
       }
-
-
     ]
   }  
 ];
