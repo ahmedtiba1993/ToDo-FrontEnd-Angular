@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PdfService } from 'src/app/services/pdf/pdf.service';
 import { TodoService } from 'src/app/services/todo/todo.service';
 import { TodoDto } from 'src/gs-api/src/models';
 
@@ -17,13 +18,14 @@ export class FaireComponent implements OnInit {
   errorMessage : Array<string> = []
 
   constructor(
-    private todoService : TodoService
+    private todoService : TodoService,
+    private pdfService : PdfService
   ) { }
 
   ngOnInit() {
     this.findAllNotEnded()
   }
-
+  
   findAllNotEnded(){
     this.todoService.findAllNotEnded()
     .subscribe(res=>{
@@ -57,5 +59,13 @@ export class FaireComponent implements OnInit {
     this.todoService.important(td.id!).subscribe(res=>{
       this.findAllNotEnded()
     })
+  }
+
+  pdf(action : string){
+    if(action == "open"){
+      this.pdfService.openPDF()
+    }else{
+      this.pdfService.downloadPDF()
+    }
   }
 }

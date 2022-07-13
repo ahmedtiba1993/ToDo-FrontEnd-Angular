@@ -26,8 +26,19 @@
       </div>
 
       <div>
-        <table class="table table-hover mt-5">
+        <table class="table table-hover mt-5" id="htmlData">
           <tbody>
+            <!-- Button Pdf-->
+            <div class="row">
+              <div class="col-md-6">
+                <button type="button" class="btn btn-outline-primary" (click)="pdf('open')"><i class="bx bxs-file-pdf"></i>Ouvrir PDF</button>
+              </div>
+              <div class="col-md-6">
+                <button type="button" class="btn btn-outline-success" (click)="pdf('download')"><i class="bx bxs-file-pdf"></i>Exporter PDF</button>
+              </div>
+            </div>
+            <!-- Button Pdf-->
+
             <tr *ngFor="let t of listTodo">
               <td>
                 <button (click)="importat(t)" *ngIf="t.important == false" type="button" class="btn btn-outline-dark">

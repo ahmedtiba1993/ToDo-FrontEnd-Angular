@@ -7,6 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { TodoDto } from '../models/todo-dto';
 import { GroupeTodoDto } from '../models/groupe-todo-dto';
 
 /**
@@ -16,6 +17,7 @@ import { GroupeTodoDto } from '../models/groupe-todo-dto';
   providedIn: 'root',
 })
 class GroupeTodoControllerService extends __BaseService {
+  static readonly ajouterTodoUsingPOSTPath = '/todo/v1/groupetodo/ajoutertodo/{id}';
   static readonly findAllUsingGETPath = '/todo/v1/groupetodo/all';
   static readonly saveUsingPOSTPath = '/todo/v1/groupetodo/create';
   static readonly deleteUsingDELETEPath = '/todo/v1/groupetodo/delete/{idTodo}';
@@ -27,6 +29,51 @@ class GroupeTodoControllerService extends __BaseService {
     http: HttpClient
   ) {
     super(config, http);
+  }
+
+  /**
+   * ajouterTodo
+   * @param params The `GroupeTodoControllerService.AjouterTodoUsingPOSTParams` containing the following parameters:
+   *
+   * - `id`: id
+   *
+   * - `dto`: dto
+   */
+  ajouterTodoUsingPOSTResponse(params: GroupeTodoControllerService.AjouterTodoUsingPOSTParams): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    __body = params.dto;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/todo/v1/groupetodo/ajoutertodo/${encodeURIComponent(String(params.id))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * ajouterTodo
+   * @param params The `GroupeTodoControllerService.AjouterTodoUsingPOSTParams` containing the following parameters:
+   *
+   * - `id`: id
+   *
+   * - `dto`: dto
+   */
+  ajouterTodoUsingPOST(params: GroupeTodoControllerService.AjouterTodoUsingPOSTParams): __Observable<null> {
+    return this.ajouterTodoUsingPOSTResponse(params).pipe(
+      __map(_r => _r.body as null)
+    );
   }
 
   /**
@@ -216,6 +263,22 @@ class GroupeTodoControllerService extends __BaseService {
 }
 
 module GroupeTodoControllerService {
+
+  /**
+   * Parameters for ajouterTodoUsingPOST
+   */
+  export interface AjouterTodoUsingPOSTParams {
+
+    /**
+     * id
+     */
+    id: number;
+
+    /**
+     * dto
+     */
+    dto: TodoDto;
+  }
 }
 
 export { GroupeTodoControllerService }
