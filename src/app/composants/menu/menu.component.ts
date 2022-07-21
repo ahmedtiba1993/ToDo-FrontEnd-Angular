@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { GroupetodoService } from 'src/app/services/groupetodo/groupetodo.service';
 import { GroupeTodoDto } from 'src/gs-api/src/models';
 import { Menu } from './menu';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -22,6 +23,7 @@ export class MenuComponent implements OnInit {
       titre: 'Tâches',
       icon: 'bi bi-graph-up-arrow',
       url: '',
+      number : localStorage.getItem('totaltodo')!,
       sousMenu:[
         {
           id: "11",
@@ -69,17 +71,21 @@ export class MenuComponent implements OnInit {
 
   ]
   
+  test : string = ""
+  itemValue: any;
+  
   constructor(
     private router : Router,
-    private grtodoService : GroupetodoService
+    private grtodoService : GroupetodoService,
   ) { }
 
   private lastSelectedMenu: Menu | undefined;
 
   ngOnInit() {
     this.findAllGroupeTodo()
+    this.test = sessionStorage.getItem('totaltodo')!
   }
-
+  
   navigate(menu : Menu){
     if(this.lastSelectedMenu){
       this.lastSelectedMenu.activate=false;

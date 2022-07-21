@@ -5,4 +5,5 @@ export interface Menu{
     url?: string;
     activate?: boolean;
     sousMenu?: Array<Menu>;
+    number?:String
 }

@@ -10,6 +10,7 @@ import { InscriptionComponent } from './pages/inscription/inscription.component'
 import { LoginComponent } from './pages/login/login.component';
 import { OublieMdpComponent } from './pages/oublieMdp/oublieMdp.component';
 import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { TermineComponent } from './pages/termine/termine.component';
 import { ToutComponent } from './pages/tout/tout.component';
 import { AppicationGuardService } from './services/guard/appication-guard.service';
@@ -51,7 +52,11 @@ const routes: Routes = [
       },
       {
         path:'grtout/:idGrTodo',component: GrTodoToutComponent 
+      },
+      {
+        path:'profile',component: ProfileComponent 
       }
+
     ]
   }  
 ];

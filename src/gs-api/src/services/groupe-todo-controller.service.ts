@@ -22,6 +22,7 @@ class GroupeTodoControllerService extends __BaseService {
   static readonly saveUsingPOSTPath = '/todo/v1/groupetodo/create';
   static readonly deleteUsingDELETEPath = '/todo/v1/groupetodo/delete/{idTodo}';
   static readonly findByIdUsingGETPath = '/todo/v1/groupetodo/id/{idTodo}';
+  static readonly totalGrTodoUsingGETPath = '/todo/v1/groupetodo/total/{id}';
   static readonly findAllByUtilisateurIdUsingGETPath = '/todo/v1/groupetodo/utilsateur/{idTodo}';
 
   constructor(
@@ -220,6 +221,44 @@ class GroupeTodoControllerService extends __BaseService {
   findByIdUsingGET(idTodo: number): __Observable<GroupeTodoDto> {
     return this.findByIdUsingGETResponse(idTodo).pipe(
       __map(_r => _r.body as GroupeTodoDto)
+    );
+  }
+
+  /**
+   * totalGrTodo
+   * @param id id
+   * @return OK
+   */
+  totalGrTodoUsingGETResponse(id?: number): __Observable<__StrictHttpResponse<number>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (id != null) __params = __params.set('id', id.toString());
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/todo/v1/groupetodo/total/${encodeURIComponent(String(id))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'text'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return (_r as HttpResponse<any>).clone({ body: parseFloat((_r as HttpResponse<any>).body as string) }) as __StrictHttpResponse<number>
+      })
+    );
+  }
+  /**
+   * totalGrTodo
+   * @param id id
+   * @return OK
+   */
+  totalGrTodoUsingGET(id?: number): __Observable<number> {
+    return this.totalGrTodoUsingGETResponse(id).pipe(
+      __map(_r => _r.body as number)
     );
   }
 

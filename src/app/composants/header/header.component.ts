@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { StatistiqueService } from 'src/app/services/statistique/statistique.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { UtilisateurDto } from 'src/gs-api/src/models';
 
@@ -12,7 +14,8 @@ export class HeaderComponent implements OnInit {
   connectedUser : UtilisateurDto = {};
 
   constructor(    
-    private userService : UserService
+    private userService : UserService,
+    private router : Router,
   ) { }
 
   ngOnInit() {
@@ -21,6 +24,10 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     localStorage.clear()
+  }
+
+  navigate(link : string){
+    this.router.navigate([link])
   }
 
 }

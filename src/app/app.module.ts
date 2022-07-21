@@ -1,10 +1,11 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ChartComponent } from './composants/chart/chart.component';
 import { HeaderComponent } from './composants/header/header.component';
 import { LoaderComponent } from './composants/loader/loader.component';
 import { MenuComponent } from './composants/menu/menu.component';
@@ -41,14 +42,16 @@ import { HttpInterceptorService } from './services/HttpInterceptor.service';
     ImportantComponent,
     AccueilComponent,
     GrTodoFaireComponent,
-    GrTodoToutComponent
-    
+    GrTodoToutComponent    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    NgChartsModule
+    
   ],
   providers: [{
     provide : HTTP_INTERCEPTORS,
