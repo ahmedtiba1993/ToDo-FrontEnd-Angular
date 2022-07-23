@@ -1,0 +1,14 @@
+<form [formGroup]="myform">
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Ajouter une tache" formControlName="libelleTodo" value="{{todoModifier.libelleTodo}}">
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Description" formControlName="descriptionTodo" value="{{todoModifier.descriptionTodo}}">
+      </div>
+      <div class="mb-3">
+        <input type="datetime-local" id="meeting-time" class="form-control" name="dateTodo" value="{{todoModifier.dateTodo | date:'y-MM-ddTh:m'}}">
+      </div>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Modifier</button>
+      </div>
+</form>

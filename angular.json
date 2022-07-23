@@ -107,5 +107,7 @@
       }
     }
   },
-  "defaultProject": "ToDo-FrontEnd-Angular"
+  "cli": {
+    "analytics": "091fba4b-6a49-49d0-abe8-b4bd61ad23b3"
+  }
 }

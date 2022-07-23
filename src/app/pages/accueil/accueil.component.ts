@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { StatistiqueService } from 'src/app/services/statistique/statistique.service';
-import { interval } from 'rxjs';
-
+import { ChartType } from 'angular-google-charts';
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.component.html',
@@ -14,19 +12,20 @@ export class AccueilComponent implements OnInit {
     private statistiqueService : StatistiqueService
   ) { }
 
-
-  total : any
-  totalGroupe : any
+  totalTodo : number = 0
+  totalGroupe : number = 0
+    
 
   ngOnInit() {
     /*const data$ = interval(1000);
     data$.subscribe(value => this.get());*/
     this.getTotal()
-    this.totalGroupe=this.getTotalGroupe()
+    this.getTotalGroupe()
   }
+
   getTotal(){
       this.statistiqueService.totalTodo().subscribe(res=>{
-        this.total= res
+        this.totalTodo= res
       })
     }
 

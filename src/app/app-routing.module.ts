@@ -12,6 +12,7 @@ import { OublieMdpComponent } from './pages/oublieMdp/oublieMdp.component';
 import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { TermineComponent } from './pages/termine/termine.component';
+import { TodoModifierComponent } from './pages/todoModifier/todoModifier.component';
 import { ToutComponent } from './pages/tout/tout.component';
 import { AppicationGuardService } from './services/guard/appication-guard.service';
 
@@ -55,7 +56,11 @@ const routes: Routes = [
       },
       {
         path:'profile',component: ProfileComponent 
-      }
+      },
+      {
+        path:'modifier/:idTodo',component: TodoModifierComponent 
+      },
+
 
     ]
   }  

@@ -1,0 +1,53 @@
+
+<button type="button" class="btn btn-outline-success mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#largeModal">
+  <i class="bx bxs-file-pdf"></i>Exporter PDF
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="largeModal" tabindex="-1" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Exporter En PDF</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <!-- Button Pdf-->
+                <div class="row w-50">
+                  <div class="col-md-6">
+                    <button type="button" class="btn btn-outline-primary" (click)="pdf('open')"><i class="bx bxs-file-pdf"></i>Ouvrir PDF</button>
+                  </div>
+                  <div class="col-md-6">
+                    <button type="button" class="btn btn-outline-success" (click)="pdf('download')"><i class="bx bxs-file-pdf"></i>Exporter PDF</button>
+                  </div>
+                </div>
+                <!--PDF Compnent-->
+              <div class="text-center m-3" id="htmlData" >
+                <img src="assets/img/logo.png" alt="">
+                <h1>ToDo Application</h1>
+                <h2 class="mt-1 mb-1">{{titre}}</h2>
+                <table class="table mt-3">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Libelle</th>
+                      <th scope="col">Desciprtion</th>
+                      <th scope="col">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngFor="let t of listTodo">
+                        <tr  *ngIf="t.corbeille == false">          
+                            <td>{{t.libelleTodo}}</td>
+                            <td>{{t.descriptionTodo}}</td>
+                            <td>{{t.dateTodo | date:'M/d/y h:mm'}}</td>
+                          </tr>
+                    </ng-container>
+                  </tbody>
+                </table>
+              </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

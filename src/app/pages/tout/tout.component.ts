@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PdfService } from 'src/app/services/pdf/pdf.service';
 import { TodoService } from 'src/app/services/todo/todo.service';
 import { TodoDto } from 'src/gs-api/src/models';
 
@@ -12,9 +14,13 @@ export class ToutComponent implements OnInit {
   title = 'test-time';
   currentDate:any = new Date();
   listTodo : Array<TodoDto> = []
+  todo : TodoDto = {}
+  errorMessage : Array<string> = []
+  todoModifier : TodoDto = {}
 
   constructor(
-    private todoService : TodoService
+    private todoService : TodoService,
+    private router : Router
   ) { }
 
   ngOnInit() {
@@ -27,4 +33,44 @@ export class ToutComponent implements OnInit {
       this.listTodo = res;
     })
   }
+  
+  ajouter(){
+    this.todoService.enregistrerTodo(this.todo).subscribe(res=>{
+      this.findAllTodo()
+      this.todo={}
+      this.errorMessage = []
+    },error=>{
+      this.errorMessage = error.error.errors
+    })
+  }
+
+  confirmerEtSupprimerTodo(td : TodoDto){
+    this.todoService.corbeille(td.id!).subscribe(res=>{
+      this.findAllTodo()
+    })
+  }
+
+  termine(td : TodoDto){
+    this.todoService.termine(td.id!).subscribe(res=>{
+      this.findAllTodo()
+    })
+  }
+
+  importat(td : TodoDto){
+    this.todoService.important(td.id!).subscribe(res=>{
+      this.findAllTodo()
+    })
+  }
+
+  navigate(t : TodoDto){
+    this.router.navigate(['modifier',t.id])
+  }
+
+  setModifier(t:TodoDto){
+    this.todoModifier = t
+    console.log(this.todoModifier.libelleTodo)
+
+  }
+
+  
 }

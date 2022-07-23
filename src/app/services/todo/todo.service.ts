@@ -65,4 +65,8 @@ constructor(
     return this.todoService.findAllImportantUsingGET(id as number)
   }
 
+  findById(id : number): Observable<TodoDto>{
+    return this.todoService.findByIdUsingGET1(id)
+  }
+
 }

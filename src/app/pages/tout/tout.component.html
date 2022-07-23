@@ -1,28 +1,99 @@
 <div class="col">
   <div>
-      <h1>Mes Taches</h1>
+      <h1>Toutes les tâches</h1>
   </div>
-  <div class="col-xl-3 col-lg-6">
-    <div class="card card-stats mb-4 mb-xl-0">
-      <div class="card-body">
-        <div class="row">
-          <div class="col">
-            <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
-            <span class="h2 font-weight-bold mb-0">350,897</span>
-          </div>
-          <div class="col-auto">
-            <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-              <i class="fas fa-chart-bar"></i>
-            </div>
-          </div>
-        </div>
-        <p class="mt-3 mb-0 text-muted text-sm">
-          <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-          <span class="text-nowrap">Since last month</span>
-        </p>
+
+  <div>
+    <form>
+      <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert" *ngIf="errorMessage.length > 0">
+        <span *ngFor="let msg of errorMessage">{{msg}} <br></span>
       </div>
-    </div>
+      <div class="row">
+          <div class="col">
+          <input type="text" class="form-control" placeholder="Ajouter une tache" name="libelleTodo" [(ngModel)]="todo.libelleTodo">
+          </div>
+          <div class="col">
+          <input type="text" class="form-control" placeholder="Description" name="descriptionTodo" [(ngModel)]="todo.descriptionTodo">
+          </div>
+          <div class="col">
+            <input type="datetime-local" min="{{currentDate | date:'yyyy-MM-dd'}}T00:00" class="form-control" name="dateTodo" [(ngModel)]="todo.dateTodo">
+          </div>
+          <div class="col">
+          <button type="submit" class="btn btn-primary" (click)="ajouter()">Ajouter</button>
+          </div>
+      </div>
+    </form>
+  </div>
+
+  <div>
+    
+    <!-- Button trigger modal -->
+    <app-pdf [listTodo]="listTodo" [titre]="'Toutes les tâches'" ></app-pdf>  
+
+    <table class="table table-hover mt-1">
+    <tbody>
+      <ng-container *ngFor="let t of listTodo">
+          <tr  *ngIf="t.corbeille == false">          
+              <td class="col-md-1">
+                <button (click)="importat(t)" *ngIf="t.important == false" type="button" class="btn btn-outline-dark">
+                  <i class="ri-star-line"></i>
+                </button>
+                <button (click)="importat(t)" *ngIf="t.important == true" type="button" class="btn btn-outline-warning bg-warning">
+                  <i class="ri-star-line text-dark"></i>
+                </button>
+              </td>
+              <td>{{t.libelleTodo}}</td>
+              <td>{{t.descriptionTodo}}</td>
+              <td>{{t.dateTodo | date:'MM/dd/y hh:mm'}}</td>
+              <td>
+                <div class="row">
+                  <div class="col-md-4">
+                    <button class="btn btn-success me-1" *ngIf="t.etatTodo == false" (click)="termine(t)">Terminé</button>
+                    <button class="btn btn-warning me-1" *ngIf="t.etatTodo == true" (click)="termine(t)">Non Terminée</button>
+                  </div>
+                  <div class="col-md-4">
+                    <button class="btn btn-primary" (click)="setModifier(t)" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Modifier</button>
+                  </div>
+                  <div class="col-md-4">
+                    <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#modalDeleteArt'+t.id">
+                    <i class="bi bi-trash-fill"></i>vers corbeille
+                    </button>
+                  </div>
+                </div>
+              </td>
+              <div class="modal fade" id="modalDeleteArt{{t.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Confirmation de la suppression</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          Etes-vous sur de vouloir supprimer cette tache ?
+                      </div>
+                      <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-slash-circle"></i> Annuler</button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="confirmerEtSupprimerTodo(t)"><i class="bi bi-trash-fill"></i> Supprimer</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+          </tr>
+      </ng-container>
+    </tbody>
+    </table>
   </div>
 </div>
 
 
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <app-todoModifier 
+      [todoModifier]="todoModifier" *ngIf="todoModifier">
+    </app-todoModifier>
+  </div>
+</div>

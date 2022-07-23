@@ -2,13 +2,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgChartsModule } from 'ng2-charts';
+import { GoogleChartsModule } from 'angular-google-charts';  
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChartComponent } from './composants/chart/chart.component';
 import { HeaderComponent } from './composants/header/header.component';
 import { LoaderComponent } from './composants/loader/loader.component';
 import { MenuComponent } from './composants/menu/menu.component';
+import { PdfComponent } from './composants/pdf/pdf.component';
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { AujourdhuiComponent } from './pages/aujourdhui/aujourdhui.component';
 import { CorbeilleComponent } from './pages/corbeille/corbeille.component';
@@ -21,6 +22,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { OublieMdpComponent } from './pages/oublieMdp/oublieMdp.component';
 import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.component';
 import { TermineComponent } from './pages/termine/termine.component';
+import { TodoModifierComponent } from './pages/todoModifier/todoModifier.component';
 import { ToutComponent } from './pages/tout/tout.component';
 import { HttpInterceptorService } from './services/HttpInterceptor.service';
 
@@ -42,7 +44,11 @@ import { HttpInterceptorService } from './services/HttpInterceptor.service';
     ImportantComponent,
     AccueilComponent,
     GrTodoFaireComponent,
-    GrTodoToutComponent    
+    GrTodoToutComponent,
+    ChartComponent,
+    PdfComponent,
+    TodoModifierComponent
+     
   ],
   imports: [
     BrowserModule,
@@ -50,8 +56,7 @@ import { HttpInterceptorService } from './services/HttpInterceptor.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgChartsModule
-    
+    GoogleChartsModule
   ],
   providers: [{
     provide : HTTP_INTERCEPTORS,
