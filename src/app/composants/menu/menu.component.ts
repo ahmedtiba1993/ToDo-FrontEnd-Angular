@@ -67,12 +67,40 @@ export class MenuComponent implements OnInit {
       url: 'corbeille',
       sousMenu:[]
     }
-    
-
   ]
   
-  test : string = ""
-  itemValue: any;
+  public menuGroupe : Array<Menu> =[
+    {
+      id: "50",
+      titre: 'Tout',
+      icon: 'bi bi-pie-chart',
+    },
+    {
+      id: "51",
+      titre: 'A faire',
+      icon: 'bi bi-pie-chart',
+    },
+    {
+      id: "52",
+      titre: 'Terminé',
+      icon: 'bi bi-bar-chart-line',
+    },
+    {
+      id: "53",
+      titre: 'Ma journée',
+      icon: 'ri-24-hours-fill',
+    },
+    {
+      id: "52",
+      titre: 'Important',
+      icon: 'ri-star-line',
+    },
+    {
+      id: "52",
+      titre: 'Corbeille',
+      icon: 'ri-delete-bin-2-line',
+    },
+  ]
   
   constructor(
     private router : Router,
@@ -83,7 +111,6 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.findAllGroupeTodo()
-    this.test = sessionStorage.getItem('totaltodo')!
   }
   
   navigate(menu : Menu){
@@ -112,7 +139,7 @@ export class MenuComponent implements OnInit {
     })
   }
 
-  navigateVersGrTout(id : number){
-    this.router.navigate(['grtout',id])
+  navigateGr(id : number){
+    this.router.navigate(['tout',id])
   }
 }

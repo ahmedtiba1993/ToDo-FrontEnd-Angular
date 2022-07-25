@@ -1,6 +1,7 @@
 <div class="col">
   <div>
-      <h1>Toutes les tâches</h1>
+      <h1 *ngIf="grTodo.nom">Toutes les tâches : {{grTodo.nom}}</h1>
+      <h1 *ngIf="grTodo.nom == null">Toutes les tâches</h1>
   </div>
 
   <div>
@@ -28,11 +29,12 @@
   <div>
     
     <!-- Button trigger modal -->
-    <app-pdf [listTodo]="listTodo" [titre]="'Toutes les tâches'" ></app-pdf>  
+    <app-pdf [listTodo]="listTodo" [titre]="'Toutes les tâches : '+grTodo.nom" *ngIf="grTodo.nom" ></app-pdf>  
+    <app-pdf [listTodo]="listTodo" [titre]="'Toutes les tâches'" *ngIf="grTodo.nom == null" ></app-pdf>  
 
     <table class="table table-hover mt-1">
     <tbody>
-      <ng-container *ngFor="let t of listTodo">
+      <ng-container *ngFor=" let t of listTodo">
           <tr  *ngIf="t.corbeille == false">          
               <td class="col-md-1">
                 <button (click)="importat(t)" *ngIf="t.important == false" type="button" class="btn btn-outline-dark">

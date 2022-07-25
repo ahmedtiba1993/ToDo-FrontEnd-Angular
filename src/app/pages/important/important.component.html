@@ -1,8 +1,10 @@
 <div class="col">
   <div>
-      <h1>les taches qui sont important</h1>
+      <h1 class="ri-star-line"> Important </h1>
   </div>
   <div>
+    <app-pdf [listTodo]="listTodo" [titre]="'Important'" ></app-pdf>  
+
     <table class="table table-hover mt-5">
       <tbody>
         <tr *ngFor="let t of listTodo">
