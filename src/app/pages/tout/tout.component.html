@@ -44,7 +44,7 @@
               </td>
               <td>{{t.libelleTodo}}</td>
               <td>{{t.descriptionTodo}}</td>
-              <td>{{t.dateTodo | date:'MM/dd/y hh:mm'}}</td>
+              <td>{{t.dateTodo | date:'dd/MM/y hh:mm'}}</td>
               <td>
                 <div class="row">
                   <div class="col-md-4">
@@ -52,7 +52,8 @@
                     <button class="btn btn-warning me-1" *ngIf="t.etatTodo == true" (click)="termine(t)">Non Terminée</button>
                   </div>
                   <div class="col-md-4">
-                    <button class="btn btn-primary" (click)="setModifier(t)" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Modifier</button>
+                    <button *ngIf="t.etatTodo == false" class="btn btn-primary" (click)="setModifier(t)" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Modifier</button>
+                    <button *ngIf="t.etatTodo == true" class="btn btn-primary" type="button" disabled>Modifier</button>
                   </div>
                   <div class="col-md-4">
                     <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#modalDeleteArt'+t.id">
@@ -88,12 +89,14 @@
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
-    <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+    <h1 id="offcanvasRightLabel">modifier une tâche</h1>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
     <app-todoModifier 
-      [todoModifier]="todoModifier" *ngIf="todoModifier">
+      [idTodoModifier]="idTodoModifier" *ngIf="idTodoModifier"
+      (todoM)="handleSuppression($event)">
+      >
     </app-todoModifier>
   </div>
 </div>

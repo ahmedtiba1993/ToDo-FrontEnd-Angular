@@ -1,3 +1,12 @@
-<p>
-  aujourdhui works!
-</p>
+<h1>Ma journée</h1>
+<table class="table table-hover mt-1">
+  <tbody>
+    <ng-container *ngFor="let t of listTodo">
+        <tr  *ngIf="t.corbeille == false">                    
+            <td>{{t.libelleTodo}}</td>
+            <td>{{t.descriptionTodo}}</td>
+            <td>{{t.dateTodo | date:'hh:mm'}}</td>
+        </tr>
+    </ng-container>
+  </tbody>
+  </table>

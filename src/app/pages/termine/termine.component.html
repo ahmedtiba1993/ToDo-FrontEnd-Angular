@@ -3,6 +3,8 @@
       <h1>les taches qui sont Terminées</h1>
   </div>
   <div>
+    <app-pdf [listTodo]="listTodo" [titre]="'les taches qui sont Terminées'" ></app-pdf>  
+
     <table class="table table-hover mt-5">
       <tbody>
         <tr *ngFor="let t of listTodo">

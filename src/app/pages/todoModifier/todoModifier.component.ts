@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { DatePipe, formatDate ,registerLocaleData } from '@angular/common';
+import { Component, EventEmitter, Input, OnInit, Output, PipeTransform, SimpleChanges } from '@angular/core';
 import { TodoService } from 'src/app/services/todo/todo.service';
 import { TodoDto } from 'src/gs-api/src/models';
 
@@ -9,23 +8,61 @@ import { TodoDto } from 'src/gs-api/src/models';
   templateUrl: './todoModifier.component.html',
   styleUrls: ['./todoModifier.component.css']
 })
-export class TodoModifierComponent implements OnInit {
+export class TodoModifierComponent implements OnInit { 
+
 
   @Input()
+  idTodoModifier = 0
+
   todoModifier : TodoDto = {}
   
-  myform:any
+  @Output() 
+  todoM = new EventEmitter<string>();
+
+  errorMessage : Array<string> = []
+  successMessage : string =""
+
+  title = 'test-time';
+  currentDate:any = new Date();
+
+  completeDate!: Date;
+  localCompleteDate : string = ""
+  
+  datePipe = new DatePipe('en-US');
+  
 
   constructor(
-    private formbuilder:FormBuilder
+    private todoService : TodoService
   ) { }
 
+
   ngOnInit() {
-    this.myform=this.formbuilder.group({
-      libelleTodo :[],     
-      descriptionTodo :[], 
-      dateTodo:[]     
+  }
+
+  modifier(){    
+   this.todoService.enregistrerTodo(this.todoModifier).subscribe(res=>{
+      this.successMessage = "Modifier ToDo avec succès"
+      this.errorMessage = []
+      this.todoM.emit('success')     
+    },error=>{
+      this.errorMessage = error.error.errors
     })
   }
 
+  ngOnChanges(changes: SimpleChanges) 
+  { 
+    this.successMessage = ""
+    this.errorMessage = []
+    this.findTodo(changes['idTodoModifier'].currentValue)
+  } 
+
+  findTodo(id : number){
+    this.todoService.findById(id).subscribe(res=>{
+      this.todoModifier = res
+      this.todoModifier.dateTodo = formatDate(this.todoModifier.dateTodo!,'yyyy-MM-ddThh:mm',"en-US")
+     }) 
+  }
+
+
+ 
 }

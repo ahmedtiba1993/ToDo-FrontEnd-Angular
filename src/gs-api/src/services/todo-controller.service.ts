@@ -27,6 +27,7 @@ class TodoControllerService extends __BaseService {
   static readonly findAllEndedUsingGETPath = '/todo/v1/todos/allEnded/{idUtilisateur}';
   static readonly findAllCorbeilleUsingGETPath = '/todo/v1/todos/findAllCorbeille/{idUtilisateur}';
   static readonly findAllImportantUsingGETPath = '/todo/v1/todos/findAllImportant/{idUtilisateur}';
+  static readonly findAllTodayUsingGETPath = '/todo/v1/todos/findAllToday/{idUtilisateur}';
   static readonly totalTodoUsingGETPath = '/todo/v1/todos/totalTodo/{id}';
   static readonly findAllByUtilisateurIdUsingGET1Path = '/todo/v1/todos/utilsateur/{idTodo}';
 
@@ -456,6 +457,44 @@ class TodoControllerService extends __BaseService {
    */
   findAllImportantUsingGET(idUtilisateur: number): __Observable<Array<TodoDto>> {
     return this.findAllImportantUsingGETResponse(idUtilisateur).pipe(
+      __map(_r => _r.body as Array<TodoDto>)
+    );
+  }
+
+  /**
+   * findAllToday
+   * @param idUtilisateur idUtilisateur
+   * @return OK
+   */
+  findAllTodayUsingGETResponse(idUtilisateur: number): __Observable<__StrictHttpResponse<Array<TodoDto>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/todo/v1/todos/findAllToday/${encodeURIComponent(String(idUtilisateur))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<TodoDto>>;
+      })
+    );
+  }
+  /**
+   * findAllToday
+   * @param idUtilisateur idUtilisateur
+   * @return OK
+   */
+  findAllTodayUsingGET(idUtilisateur: number): __Observable<Array<TodoDto>> {
+    return this.findAllTodayUsingGETResponse(idUtilisateur).pipe(
       __map(_r => _r.body as Array<TodoDto>)
     );
   }

@@ -26,21 +26,13 @@
       </div>
 
       <div>
-        <table class="table table-hover mt-5" id="htmlData">
-          <tbody>
-            <!-- Button Pdf-->
-            <div class="row">
-              <div class="col-md-6">
-                <button type="button" class="btn btn-outline-primary" (click)="pdf('open')"><i class="bx bxs-file-pdf"></i>Ouvrir PDF</button>
-              </div>
-              <div class="col-md-6">
-                <button type="button" class="btn btn-outline-success" (click)="pdf('download')"><i class="bx bxs-file-pdf"></i>Exporter PDF</button>
-              </div>
-            </div>
-            <!-- Button Pdf-->
+        <app-pdf [listTodo]="listTodo" [titre]="'Mes Tache A faire'" ></app-pdf>  
 
-            <tr *ngFor="let t of listTodo">
-              <td>
+    <table class="table table-hover mt-1">
+    <tbody>
+      <ng-container *ngFor="let t of listTodo">
+          <tr  *ngIf="t.corbeille == false">          
+              <td class="col-md-1">
                 <button (click)="importat(t)" *ngIf="t.important == false" type="button" class="btn btn-outline-dark">
                   <i class="ri-star-line"></i>
                 </button>
@@ -50,38 +42,61 @@
               </td>
               <td>{{t.libelleTodo}}</td>
               <td>{{t.descriptionTodo}}</td>
-              <td>{{t.dateTodo}}</td>
+              <td>{{t.dateTodo | date:'dd/MM/y hh:mm'}}</td>
               <td>
-                <button class="btn btn-success me-1" (click)="termine(t)">Terminé</button>
-                <button class="btn btn-warning me-1">Modifier</button>
-                <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#modalDeleteArt'+t.id">
-                  <i class="bi bi-trash-fill"></i>vers corbeille
-                </button>
+                <div class="row">
+                  <div class="col-md-4">
+                    <button class="btn btn-success me-1" *ngIf="t.etatTodo == false" (click)="termine(t)">Terminé</button>
+                    <button class="btn btn-warning me-1" *ngIf="t.etatTodo == true" (click)="termine(t)">Non Terminée</button>
+                  </div>
+                  <div class="col-md-4">
+                    <button *ngIf="t.etatTodo == false" class="btn btn-primary" (click)="setModifier(t)" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Modifier</button>
+                    <button *ngIf="t.etatTodo == true" class="btn btn-primary" type="button" disabled>Modifier</button>
+                  </div>
+                  <div class="col-md-4">
+                    <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#modalDeleteArt'+t.id">
+                    <i class="bi bi-trash-fill"></i>vers corbeille
+                    </button>
+                  </div>
+                </div>
               </td>
               <div class="modal fade" id="modalDeleteArt{{t.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Confirmation de la suppression</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Etes-vous sur de vouloir supprimer cette tache ?
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-slash-circle"></i> Annuler</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="confirmerEtSupprimerTodo(t)"><i class="bi bi-trash-fill"></i> Supprimer</button>
-                    </div>
+                  <div class="modal-content">
+                      <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Confirmation de la suppression</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          Etes-vous sur de vouloir supprimer cette tache ?
+                      </div>
+                      <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-slash-circle"></i> Annuler</button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="confirmerEtSupprimerTodo(t)"><i class="bi bi-trash-fill"></i> Supprimer</button>
+                      </div>
+                  </div>
                 </div>
-                </div>
-            </div>
-
-            </tr>
-          </tbody>
-        </table>
+              </div>
+          </tr>
+      </ng-container>
+    </tbody>
+    </table>
       </div>
   </div>
 
   <!-- Modal -->
 
   
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h1 id="offcanvasRightLabel">modifier une tâche</h1>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <app-todoModifier 
+        [idTodoModifier]="idTodoModifier" *ngIf="idTodoModifier"
+        (todoM)="handleSuppression($event)">
+        >
+      </app-todoModifier>
+    </div>
+  </div>

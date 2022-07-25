@@ -16,7 +16,7 @@ export class ToutComponent implements OnInit {
   listTodo : Array<TodoDto> = []
   todo : TodoDto = {}
   errorMessage : Array<string> = []
-  todoModifier : TodoDto = {}
+  idTodoModifier : number = 0
 
   constructor(
     private todoService : TodoService,
@@ -67,9 +67,13 @@ export class ToutComponent implements OnInit {
   }
 
   setModifier(t:TodoDto){
-    this.todoModifier = t
-    console.log(this.todoModifier.libelleTodo)
+    this.idTodoModifier = t.id!
+  }
 
+  handleSuppression( event : any){
+    if(event == 'success'){
+      this.findAllTodo();
+    }
   }
 
   

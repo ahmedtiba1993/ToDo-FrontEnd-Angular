@@ -17,6 +17,8 @@ export class FaireComponent implements OnInit {
   todo : TodoDto = {}
   errorMessage : Array<string> = []
 
+  idTodoModifier : number = 0
+
   constructor(
     private todoService : TodoService,
     private pdfService : PdfService
@@ -66,6 +68,17 @@ export class FaireComponent implements OnInit {
       this.pdfService.openPDF()
     }else{
       this.pdfService.downloadPDF()
+    }
+  }
+
+  setModifier(t:TodoDto){
+    this.idTodoModifier = t.id!
+  }
+
+  
+  handleSuppression( event : any){
+    if(event == 'success'){
+      this.findAllNotEnded();
     }
   }
 }

@@ -69,4 +69,9 @@ constructor(
     return this.todoService.findByIdUsingGET1(id)
   }
 
+  findAllToday():Observable<TodoDto[]>{
+    const id=this.userService.getConnectedUser().id
+    return this.todoService.findAllTodayUsingGET(id as number)
+  }
+
 }
