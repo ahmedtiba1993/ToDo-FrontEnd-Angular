@@ -18,26 +18,26 @@
           <td>{{t.dateTodo}}</td>
           <td>
             
-            <button *ngIf="t.etatTodo == true" class="btn btn-warning me-1" (click)="termine(t)">Non Terminée</button>
-            <button *ngIf="t.etatTodo == false" class="btn btn-success me-1" (click)="termine(t)">Terminé</button>
+            <button *ngIf="t.etatTodo == true" class="btn btn-warning me-1" (click)="termine(t)">{{"non_termine" | translate}}</button>
+            <button *ngIf="t.etatTodo == false" class="btn btn-success me-1" (click)="termine(t)">{{"Terminé" | translate}}</button>
             
             <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#modalDeleteArt'+t.id">
-              <i class="bi bi-trash-fill"></i>vers corbeille
+              <i class="bi bi-trash-fill"></i>{{"vers_corbeille" | translate}}
             </button>
           </td>
           <div class="modal fade" id="modalDeleteArt{{t.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Confirmation de la suppression</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">{{"header_confirmation_supp" | translate}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Etes-vous sur de vouloir supprimer cette tache ?
+                  {{"msg_confirmation_supp" | translate}}
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-slash-circle"></i> Annuler</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="confirmerEtSupprimerTodo(t)"><i class="bi bi-trash-fill"></i> Supprimer</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-slash-circle"></i> {{"annuler" | translate}}</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="confirmerEtSupprimerTodo(t)"><i class="bi bi-trash-fill"></i> {{"supprimer" | translate}}</button>
                 </div>
             </div>
             </div>

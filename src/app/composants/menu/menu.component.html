@@ -5,12 +5,12 @@
     <li class="nav-item" *ngFor="let menu of menuProperties">
       <div *ngIf="menu.sousMenu!.length != 0">
         <a class="nav-link collapsed" [attr.data-bs-target]="'#nav'+menu.id" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>{{menu.titre}}</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-menu-button-wide"></i><span> {{menu.titre! | translate}}</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="nav{{menu.id}}" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li *ngFor="let sousMenu of menu.sousMenu" [ngClass]="{'text-white bg-warning':menu.activate, '': !menu.activate}">
             <a  href="javascript:void(0);" (click)="navigate(sousMenu)">
-              <i class="bi bi-circle"></i><span>{{sousMenu.titre}}</span>
+              <i class="bi bi-circle"></i><span>{{sousMenu.titre! | translate}}</span>
             </a>
           </li>
         </ul>
@@ -18,14 +18,14 @@
       <div *ngIf="menu.sousMenu!.length == 0" [ngClass]="{'text-white bg-warning':menu.activate, '': !menu.activate}">
         <a class="nav-link collapsed" href="javascript:void(0);" (click)="navigate(menu)">
           <i class="{{menu.icon}}"></i>
-          <span>{{menu.titre}}</span>
+          <span>{{menu.titre! | translate}}</span>
         </a>
       </div>       
     </li><!-- End Components Nav -->
 </ul>
 
 <ul class="sidebar-nav" id="sidebar-nav">
-  <li class="nav-heading">Les projets</li>
+  <li class="nav-heading">{{"projets" | translate}}</li>
   <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert" *ngIf="errorMessage.length >0">
     <span *ngFor="let msg of errorMessage">{{msg}}</span>
   </div>
@@ -40,7 +40,7 @@
       </a>
       <ul id="nav{{grmenu.id}}" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
-        <li *ngFor="let menu of menuGroupe"><a href="javascript:void(0);" (click)="navigateGr(grmenu.id!)"><i class="{{menu.icon}}"></i><span>{{menu.titre}}</span></a></li>        
+        <li *ngFor="let menu of menuGroupe"><a href="javascript:void(0);" (click)="navigateGr(grmenu.id!)"><i class="{{menu.icon!}}"></i><span>{{menu.titre! | translate}}</span></a></li>        
 
       </ul>
     </div>       

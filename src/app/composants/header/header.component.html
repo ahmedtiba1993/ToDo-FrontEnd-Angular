@@ -1,5 +1,5 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
-
+ 
   <div class="d-flex align-items-center justify-content-between">
     <a href="javascript:void(0);" (click)="navigate('')" class="logo d-flex align-items-center">
       <img src="assets/img/logo.png" alt="">
@@ -25,13 +25,26 @@
       </li><!-- End Search Icon-->
 
       <app-loader></app-loader>
-      <li class="nav-item dropdown pe-3">
+      <span class="form-inline">
+        <select 
+            class="form-control" 
+            #selectedLang 
+            (change)="switchLang(selectedLang.value)">
+          <option *ngFor="let language of translate.getLangs()" 
+            [value]="language"
+            [selected]="language === translate.currentLang">
+            {{ language }}
+          </option>
+        </select>
+      </span>
 
+      <li class="nav-item dropdown pe-3">
+       
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
           <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
           <span class="d-none d-md-block dropdown-toggle ps-2">{{connectedUser.nom}} {{connectedUser.prenom}}</span>
         </a><!-- End Profile Iamge Icon -->
-
+        
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
           <li class="dropdown-header">
             <h6>Ahmed Tiba</h6>

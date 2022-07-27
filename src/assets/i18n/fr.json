@@ -1,0 +1,49 @@
+{
+    "taches" : "Tâches",
+    "Tout" : "Tout",
+    "A faire":"A faire",
+    "Terminé":"Terminé",
+    "Ma journée":"Ma journée",
+    "Important":"Important",
+    "Corbeille":"Corbeille",
+    "projets":"LES PROJETS",
+
+    "Toutes_taches":"Toutes les tâches",
+    "ajouter_todo":"Ajouter une tâche",
+    "description":"Description",
+    "termine":"Terminé",
+    "non_termine":"Non terminée",
+    "modifier":"Modifier",
+    "vers_corbeille":"vers corbeille",
+    "header_confirmation_supp":"Confirmation de la suppression",
+    "msg_confirmation_supp":"Etes-vous sur de vouloir supprimer cette tache ?",
+    "annuler":"Annuler",
+    "supprimer":"Supprimer",
+    "ajouter":"Ajouter",
+
+    "exporter":"Exporter",
+    "ouvrir":"Ouvrir",
+    "Exporter En":"Exporter En",
+    "Libelle":"Libelle",
+    "Date":"Date",
+
+
+    "modifier_tache":"modifier une tâche",
+
+    "ma_journe":"Ma journée",
+
+    "Restaurer":"Restaurer",
+    "Supprimer_definitivement":"Supprimer définitivement",
+    "Confirmation_restauration":"Confirmation de la restauration",
+    "msg_confirmation_restauration":"Etes-vous sur de vouloir restaurer cette tache ?",
+
+    "Sitetitle": "aaaaa",
+    "Name": "Naam",
+    "NameError": "Ik weet zeker dat je een naam moet hebben",
+    "Email": "E-mailadres",
+    "PhoneNo": "Telefoon nr",
+    "Password": "Wachtwoord",
+    "Bio": "Voer bio in",
+    "TermsConditions": "Ik ga akkoord met de voorwaarden.",
+    "Submit": "voorleggen"
+}

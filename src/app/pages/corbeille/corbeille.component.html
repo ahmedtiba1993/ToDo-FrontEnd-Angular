@@ -1,6 +1,6 @@
 <div class="col">
   <div>
-      <h1><img src="assets/img/corbeille.png " width="50px">Corbeille</h1>
+      <h1><img src="assets/img/corbeille.png " width="50px">{{"Corbeille" | translate}}</h1>
   </div>
   <div>
     <table class="table table-hover mt-5">
@@ -11,10 +11,10 @@
           <td>{{t.dateTodo}}</td>
           <td>
             <button type="button" class="btn btn-link" data-bs-toggle="modal" [attr.data-bs-target]="'#modelrest'+t.id">
-              <i class="ri-file-upload-fill"></i>Restaurer
+              <i class="ri-file-upload-fill"></i>{{"Restaurer" | translate}}
             </button>
             <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#modelsupp'+t.id">
-              <i class="ri-delete-bin-2-line"></i>Supprimer définitivement
+              <i class="ri-delete-bin-2-line"></i>{{"Supprimer_definitivement" | translate}}
             </button>
           </td>
           <!-- Model restauration-->
@@ -22,15 +22,15 @@
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Confirmation de la restauration</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">{{"Confirmation_restauration" | translate}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Etes-vous sur de vouloir restaurer cette tache ?
+                  {{"msg_confirmation_restauration" | translate}}
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-slash-circle"></i> Annuler</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="restaurer(t)"><i class="ri-file-upload-fill"></i> Restaurer</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-slash-circle"></i> {{"annuler" | translate}}</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="restaurer(t)"><i class="ri-file-upload-fill"></i> {{"Restaurer" | translate}}</button>
                 </div>
             </div>
             </div>
@@ -41,15 +41,15 @@
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Confirmation de la suppression</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">{{"header_confirmation_supp" | translate}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Etes-vous sur de vouloir supprimer cette tache ?
+                  {{"msg_confirmation_supp" | translate}}
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-slash-circle"></i> Annuler</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"  (click)="delete(t)"><i class="ri-delete-bin-2-line"></i>Supprimer définitivement</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-slash-circle"></i> {{"annuler" | translate}}</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"  (click)="delete(t)"><i class="ri-delete-bin-2-line"></i>{{"Supprimer_definitivement" | translate}}</button>
                 </div>
             </div>
             </div>

@@ -4,6 +4,7 @@ import { GroupetodoService } from 'src/app/services/groupetodo/groupetodo.servic
 import { GroupeTodoDto } from 'src/gs-api/src/models';
 import { Menu } from './menu';
 import { Observable } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-menu',
@@ -12,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class MenuComponent implements OnInit {
 
+  test : string = ""
   groupetodo : GroupeTodoDto = {}
   public menuGroupeTodo : Array<GroupeTodoDto> = []
   errorMessage : Array<string> = []
@@ -20,14 +22,13 @@ export class MenuComponent implements OnInit {
     /* Menu */
     {
       id: '1',
-      titre: 'Tâches',
+      titre: 'taches',
       icon: 'bi bi-graph-up-arrow',
       url: '',
-      number : localStorage.getItem('totaltodo')!,
       sousMenu:[
         {
           id: "11",
-          titre: 'Tout',
+          titre: "Tout",
           icon: 'bi bi-pie-chart',
           url: 'tout'
         },
@@ -74,38 +75,16 @@ export class MenuComponent implements OnInit {
       id: "50",
       titre: 'Tout',
       icon: 'bi bi-pie-chart',
-    },
-    {
-      id: "51",
-      titre: 'A faire',
-      icon: 'bi bi-pie-chart',
-    },
-    {
-      id: "52",
-      titre: 'Terminé',
-      icon: 'bi bi-bar-chart-line',
-    },
-    {
-      id: "53",
-      titre: 'Ma journée',
-      icon: 'ri-24-hours-fill',
-    },
-    {
-      id: "52",
-      titre: 'Important',
-      icon: 'ri-star-line',
-    },
-    {
-      id: "52",
-      titre: 'Corbeille',
-      icon: 'ri-delete-bin-2-line',
-    },
+    }
   ]
   
   constructor(
     private router : Router,
     private grtodoService : GroupetodoService,
-  ) { }
+    private translate: TranslateService
+
+  ) { 
+  }
 
   private lastSelectedMenu: Menu | undefined;
 
@@ -142,4 +121,5 @@ export class MenuComponent implements OnInit {
   navigateGr(id : number){
     this.router.navigate(['tout',id])
   }
+  
 }

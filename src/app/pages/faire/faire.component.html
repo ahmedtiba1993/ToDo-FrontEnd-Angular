@@ -1,6 +1,7 @@
   <div class="col">
       <div>
-          <h1>Mes Tache A faire</h1>
+        {{"projets" | translate}}
+          <h1>{{"Toutes_taches" | translate}}</h1>
       </div>
 
       <div>
@@ -19,7 +20,7 @@
                 <input type="datetime-local" min="{{currentDate | date:'yyyy-MM-dd'}}T00:00" class="form-control" name="dateTodo" [(ngModel)]="todo.dateTodo">
               </div>
               <div class="col">
-              <button type="submit" class="btn btn-primary" (click)="ajouter()">Ajouter</button>
+              <button type="submit" class="btn btn-primary" (click)="ajouter()">{{"ajouter"| translate }}</button>
               </div>
           </div>
         </form>

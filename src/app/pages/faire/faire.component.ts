@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { PdfService } from 'src/app/services/pdf/pdf.service';
 import { TodoService } from 'src/app/services/todo/todo.service';
 import { TodoDto } from 'src/gs-api/src/models';
@@ -21,7 +22,9 @@ export class FaireComponent implements OnInit {
 
   constructor(
     private todoService : TodoService,
-    private pdfService : PdfService
+    private pdfService : PdfService,
+    public translate: TranslateService
+
   ) { }
 
   ngOnInit() {

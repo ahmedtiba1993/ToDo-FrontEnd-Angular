@@ -1,25 +1,24 @@
-<h1>Ma journée</h1>
+<h1>{{"ma_journe" | translate}} : {{currentDate | date:'dd/MM/y'}}</h1>
 <form>
   <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert" *ngIf="errorMessage.length > 0">
     <span *ngFor="let msg of errorMessage">{{msg}} <br></span>
   </div>
   <div class="row">
       <div class="col">
-      <input type="text" class="form-control" placeholder="Ajouter une tache" name="libelleTodo" [(ngModel)]="todo.libelleTodo">
+      <input type="text" class="form-control" placeholder='{{"ajouter_todo" | translate}}' name="libelleTodo" [(ngModel)]="todo.libelleTodo">
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Description" name="descriptionTodo" [(ngModel)]="todo.descriptionTodo">
+        <input type="text" class="form-control" placeholder='{{"description" | translate}}' name="descriptionTodo" [(ngModel)]="todo.descriptionTodo">
       </div>
       <div class="col">
         <input type="datetime-local" min="{{currentDate | date:'yyyy-MM-dd'}}T00:00" max="{{currentDate | date:'yyyy-MM-dd'}}T00:00" class="form-control" name="dateTodo" [(ngModel)]="todo.dateTodo">
       </div>
       <div class="col">
-      <button type="submit" class="btn btn-primary" (click)="ajouter()">Ajouter</button>
+      <button type="submit" class="btn btn-primary" (click)="ajouter()">{{"ajouter"| translate }}</button>
       </div>
   </div>
 </form>
-<app-pdf [listTodo]="listTodo" [titre]="'Ma journée'" ></app-pdf>  
-
+<app-pdf [listTodo]="listTodo" [titre]="['ma_journe' | translate] +' : '+ today "  ></app-pdf>  
 <table class="table table-hover mt-1">
   <tbody>
     <ng-container *ngFor="let t of listTodo">
@@ -28,8 +27,8 @@
             <td>{{t.descriptionTodo}}</td>
             <td>{{t.dateTodo | date:'hh:mm'}}</td>
             <td>
-              <button class="btn btn-success me-1" *ngIf="t.etatTodo == false" (click)="termine(t)">Terminé</button>
-              <button class="btn btn-warning me-1" *ngIf="t.etatTodo == true" (click)="termine(t)">Non Terminée</button>
+              <button class="btn btn-success me-1" *ngIf="t.etatTodo == false" (click)="termine(t)">{{"Terminé" | translate}}</button>
+              <button class="btn btn-warning me-1" *ngIf="t.etatTodo == true" (click)="termine(t)">{{"non_termine" | translate}}</button>
             </td>
         </tr>
     </ng-container>

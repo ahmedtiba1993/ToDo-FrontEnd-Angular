@@ -1,0 +1,50 @@
+{
+    "taches" : "Task",
+    "Tout" : "All",
+    "A faire":"Todo",
+    "Terminé":"Ended",
+    "Ma journée":"To day",
+    "Important":"Important",
+    "Corbeille":"Trash",
+    "projets":"PROJECTS",
+
+    "Toutes_taches":"All Tasks",
+    "ajouter_todo":"Add Task",
+    "description":"Description",
+    "termine":"Done",
+    "non_termine":"Not finished",
+    "modifier":"Edit",
+    "vers_corbeille":"to trash",
+    "header_confirmation_supp":"Deletion Confirmation",
+    "msg_confirmation_supp":"Are you sure you want to delete this task ?",
+    "annuler":"Cancel",
+    "supprimer":"Delete",
+    "ajouter":"Add",
+
+    "exporter":"Export",
+    "ouvrir":"Open",
+    "Exporter En":"Export to",
+    "Libelle":"Libelle",
+    "Date":"Date",
+
+    "modifier_tache":"Edit Task",
+
+    "ma_journe":"My Day",
+
+    "Restaurer":"Restore",
+    "Supprimer_definitivement":"Delete permanently",
+    "Confirmation_restauration":"Restore confirmation",
+    "msg_confirmation_restauration":"Are you sure you want to restore this task ?",
+
+
+
+    "Sitetitle": "Angular Multi Language Site",
+    "Name": "ahmed anglais",
+    "NameError": "I am sure you must have a name!",
+    "Email": "Email address",
+    "PhoneNo": "Phone No",
+    "Password": "Password",
+    "Bio": "Enter bio",
+    "TermsConditions": "I agree to terms and conditions.",
+    "Submit": "Submit"
+}

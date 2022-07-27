@@ -1,7 +1,7 @@
 <div class="col">
   <div>
-      <h1 *ngIf="grTodo.nom">Toutes les tâches : {{grTodo.nom}}</h1>
-      <h1 *ngIf="grTodo.nom == null">Toutes les tâches</h1>
+      <h1 *ngIf="grTodo.nom">{{"Toutes_taches" | translate}} : {{grTodo.nom}}</h1>
+      <h1 *ngIf="grTodo.nom == null">{{"Toutes_taches" | translate}}</h1>
   </div>
 
   <div>
@@ -11,16 +11,16 @@
       </div>
       <div class="row">
           <div class="col">
-          <input type="text" class="form-control" placeholder="Ajouter une tache" name="libelleTodo" [(ngModel)]="todo.libelleTodo">
+          <input type="text" class="form-control" placeholder='{{"ajouter_todo" | translate}}' name="libelleTodo" [(ngModel)]="todo.libelleTodo">
           </div>
           <div class="col">
-          <input type="text" class="form-control" placeholder="Description" name="descriptionTodo" [(ngModel)]="todo.descriptionTodo">
+          <input type="text" class="form-control" placeholder='{{"description" | translate}}' name="descriptionTodo" [(ngModel)]="todo.descriptionTodo">
           </div>
           <div class="col">
-            <input type="datetime-local" min="{{currentDate | date:'yyyy-MM-dd'}}T00:00" class="form-control" name="dateTodo" [(ngModel)]="todo.dateTodo">
+            <input type="datetime-local" lang="en" placeholder="test" min="{{currentDate | date:'yyyy-MM-dd'}}T00:00" class="form-control" name="dateTodo" [(ngModel)]="todo.dateTodo">
           </div>
           <div class="col">
-          <button type="submit" class="btn btn-primary" (click)="ajouter()">Ajouter</button>
+          <button type="submit" class="btn btn-primary" (click)="ajouter()">{{"ajouter" | translate}}</button>
           </div>
       </div>
     </form>
@@ -29,8 +29,8 @@
   <div>
     
     <!-- Button trigger modal -->
-    <app-pdf [listTodo]="listTodo" [titre]="'Toutes les tâches : '+grTodo.nom" *ngIf="grTodo.nom" ></app-pdf>  
-    <app-pdf [listTodo]="listTodo" [titre]="'Toutes les tâches'" *ngIf="grTodo.nom == null" ></app-pdf>  
+    <app-pdf [listTodo]="listTodo" [titre]="['Toutes_taches' | translate]+' : '+ grTodo.nom" *ngIf="grTodo.nom" ></app-pdf>   
+    <app-pdf [listTodo]="listTodo" [titre]="'Toutes_taches' | translate" *ngIf="grTodo.nom == null" ></app-pdf>  
 
     <table class="table table-hover mt-1">
     <tbody>
@@ -50,16 +50,16 @@
               <td>
                 <div class="row">
                   <div class="col-md-4">
-                    <button class="btn btn-success me-1" *ngIf="t.etatTodo == false" (click)="termine(t)">Terminé</button>
-                    <button class="btn btn-warning me-1" *ngIf="t.etatTodo == true" (click)="termine(t)">Non Terminée</button>
+                    <button class="btn btn-success me-1" *ngIf="t.etatTodo == false" (click)="termine(t)">{{"Terminé" | translate}}</button>
+                    <button class="btn btn-warning me-1" *ngIf="t.etatTodo == true" (click)="termine(t)">{{"non_termine" | translate}}</button>
                   </div>
                   <div class="col-md-4">
-                    <button *ngIf="t.etatTodo == false" class="btn btn-primary" (click)="setModifier(t)" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Modifier</button>
-                    <button *ngIf="t.etatTodo == true" class="btn btn-primary" type="button" disabled>Modifier</button>
+                    <button *ngIf="t.etatTodo == false" class="btn btn-primary" (click)="setModifier(t)" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">{{"modifier" | translate}}</button>
+                    <button *ngIf="t.etatTodo == true" class="btn btn-primary" type="button" disabled>{{"modifier" | translate}}</button>
                   </div>
                   <div class="col-md-4">
                     <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#modalDeleteArt'+t.id">
-                    <i class="bi bi-trash-fill"></i>vers corbeille
+                    <i class="bi bi-trash-fill"></i>{{"vers_corbeille" | translate}}
                     </button>
                   </div>
                 </div>
@@ -68,15 +68,15 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                       <div class="modal-header">
-                      <h5 class="modal-title" id="staticBackdropLabel">Confirmation de la suppression</h5>
+                      <h5 class="modal-title" id="staticBackdropLabel">{{"header_confirmation_supp" | translate}}</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                          Etes-vous sur de vouloir supprimer cette tache ?
+                        {{"msg_confirmation_supp" | translate}}
                       </div>
                       <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-slash-circle"></i> Annuler</button>
-                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="confirmerEtSupprimerTodo(t)"><i class="bi bi-trash-fill"></i> Supprimer</button>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-slash-circle"></i> {{"annuler" | translate}}</button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="confirmerEtSupprimerTodo(t)"><i class="bi bi-trash-fill"></i> {{"supprimer" | translate}}</button>
                       </div>
                   </div>
                 </div>
@@ -91,7 +91,7 @@
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
-    <h1 id="offcanvasRightLabel">modifier une tâche</h1>
+    <h1 id="offcanvasRightLabel">{{"modifier_tache" | translate}}</h1>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">

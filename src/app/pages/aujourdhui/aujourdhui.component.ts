@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from 'src/app/services/todo/todo.service';
 import { TodoDto } from 'src/gs-api/src/models';
@@ -15,10 +16,12 @@ export class AujourdhuiComponent implements OnInit {
   listTodo : Array<TodoDto> = []
   todo : TodoDto = {}
   errorMessage : Array<string> = []
+  today = formatDate(this.currentDate,'dd-MM-yyyy','en-US');
 
   constructor(
     private todoService : TodoService
-  ) { }
+  ) { 
+  }
 
   ngOnInit() {
     this.findAllToday()

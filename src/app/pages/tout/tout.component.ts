@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { GroupetodoService } from 'src/app/services/groupetodo/groupetodo.service';
 import { TodoService } from 'src/app/services/todo/todo.service';
 import { GroupeTodoDto, TodoDto } from 'src/gs-api/src/models';
