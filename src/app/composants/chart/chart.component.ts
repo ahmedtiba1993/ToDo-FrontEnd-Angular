@@ -28,7 +28,8 @@ export class ChartComponent implements OnInit {
       type: ChartType.PieChart,
       data:  [
         ["Total ToDo" , this.totalGroupe],
-        ["Total liste" , this.totalTodo],
+        ["Total ToDo terminée" , this.totalGroupe],
+        ["Total ToDo non terminée" , this.totalGroupe],
       ],
       width: 1000,
       height: 400

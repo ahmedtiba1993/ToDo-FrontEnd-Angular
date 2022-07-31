@@ -15,8 +15,11 @@ export class MenuComponent implements OnInit {
 
   test : string = ""
   groupetodo : GroupeTodoDto = {}
+
   public menuGroupeTodo : Array<GroupeTodoDto> = []
+
   errorMessage : Array<string> = []
+
   public menuProperties : Array<Menu> =[
     /* Tableau de bord */
     /* Menu */
@@ -74,7 +77,12 @@ export class MenuComponent implements OnInit {
     {
       id: "50",
       titre: 'Tout',
-      icon: 'bi bi-pie-chart',
+      url: 'tout',
+    },
+    {
+      id: '51',
+      titre: 'Corbeille',
+      url: 'corbeille',
     }
   ]
   
@@ -118,8 +126,8 @@ export class MenuComponent implements OnInit {
     })
   }
 
-  navigateGr(id : number){
-    this.router.navigate(['tout',id])
+  navigateGr(id : number,menu : Menu){
+    this.router.navigate([menu.url,id])
   }
   
 }

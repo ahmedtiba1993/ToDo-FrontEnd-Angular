@@ -52,6 +52,9 @@ const routes: Routes = [
         path:'corbeille',component: CorbeilleComponent 
       },
       {
+        path:'corbeille/:idGrTodo',component: CorbeilleComponent 
+      },
+      {
         path:'important',component: ImportantComponent 
       },
       {

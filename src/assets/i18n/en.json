@@ -1,4 +1,8 @@
 {
+    "Informations personnelles":"Personal Information",
+    "Parametre du compte":"Account setting", 
+    "Deconnexion":"Logout",
+
     "taches" : "Task",
     "Tout" : "All",
     "A faire":"Todo",
@@ -38,13 +42,11 @@
 
 
 
-    "Sitetitle": "Angular Multi Language Site",
-    "Name": "ahmed anglais",
-    "NameError": "I am sure you must have a name!",
-    "Email": "Email address",
-    "PhoneNo": "Phone No",
-    "Password": "Password",
-    "Bio": "Enter bio",
-    "TermsConditions": "I agree to terms and conditions.",
-    "Submit": "Submit"
+    "Profile":"Profile",
+    "Aperçu":"Preview",
+    "Détails du profil":"Profile Details",
+    "Modifier Profile":"Edit Profile",
+    "Changer le mot de passe":"Change password",
+    "Nom et Prénom":"Last and First Name",
+    "Date of birth":"Date de naissance"
 }

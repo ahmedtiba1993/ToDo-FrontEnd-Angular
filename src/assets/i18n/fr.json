@@ -1,4 +1,8 @@
 {
+    "Informations personnelles":"Informations personnelles",
+    "Parametre du compte":"Paramétre du compte", 
+    "Deconnexion":"Déconnexion",
+    
     "taches" : "Tâches",
     "Tout" : "Tout",
     "A faire":"A faire",
@@ -37,13 +41,16 @@
     "Confirmation_restauration":"Confirmation de la restauration",
     "msg_confirmation_restauration":"Etes-vous sur de vouloir restaurer cette tache ?",
 
-    "Sitetitle": "aaaaa",
-    "Name": "Naam",
-    "NameError": "Ik weet zeker dat je een naam moet hebben",
-    "Email": "E-mailadres",
-    "PhoneNo": "Telefoon nr",
-    "Password": "Wachtwoord",
-    "Bio": "Voer bio in",
-    "TermsConditions": "Ik ga akkoord met de voorwaarden.",
-    "Submit": "voorleggen"
+    "Profile":"Profile",
+    "Aperçu":"Aperçu",
+    "Détails du profil":"Détails du profil",
+    "Modifier Profile":"Modifier Profile",
+    "Changer le mot de passe":"Changer le mot de passe",
+    "Nom et Prénom":"Nom et Prénom",
+    "Date de naissance":"Date de naissance",
+    "":"",
+    "":"",
+    "":"",
+    "":""
+
 }

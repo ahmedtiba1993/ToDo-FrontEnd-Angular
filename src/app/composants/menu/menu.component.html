@@ -1,5 +1,5 @@
  <!-- ======= Sidebar ======= -->
- <aside id="sidebar" class="sidebar">
+ <aside  class="sidebar shadow-lg mb-1 bg-body rounded mt-1">
 
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item" *ngFor="let menu of menuProperties">
@@ -39,9 +39,7 @@
         <i class=" ri-align-justify"></i><span>{{grmenu.nom}}</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="nav{{grmenu.id}}" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-
-        <li *ngFor="let menu of menuGroupe"><a href="javascript:void(0);" (click)="navigateGr(grmenu.id!)"><i class="{{menu.icon!}}"></i><span>{{menu.titre! | translate}}</span></a></li>        
-
+        <li *ngFor="let menu of menuGroupe"><a href="javascript:void(0);" (click)="navigateGr(grmenu.id!,menu)"><i class="{{menu.icon!}}"></i><span>{{menu.titre! | translate}}</span></a></li>        
       </ul>
     </div>       
   </li><!-- End Components Nav -->
