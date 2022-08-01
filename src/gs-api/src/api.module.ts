@@ -7,6 +7,7 @@ import { BasicErrorControllerService } from './services/basic-error-controller.s
 import { SimpleEmailExampleControllerService } from './services/simple-email-example-controller.service';
 import { AuthenticationControllerService } from './services/authentication-controller.service';
 import { GroupeTodoControllerService } from './services/groupe-todo-controller.service';
+import { StatistiqueControllerService } from './services/statistique-controller.service';
 import { TodoControllerService } from './services/todo-controller.service';
 import { UtilisateurControllerService } from './services/utilisateur-controller.service';
 
@@ -27,6 +28,7 @@ import { UtilisateurControllerService } from './services/utilisateur-controller.
     SimpleEmailExampleControllerService,
     AuthenticationControllerService,
     GroupeTodoControllerService,
+    StatistiqueControllerService,
     TodoControllerService,
     UtilisateurControllerService
   ],

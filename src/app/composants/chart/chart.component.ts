@@ -10,10 +10,10 @@ import { ChartType } from 'angular-google-charts';
 export class ChartComponent implements OnInit {
   
   @Input()
-  totalTodo : any;
+  totalEnded : any;
 
   @Input()
-  totalGroupe : any
+  totalNotEnded : any
 
   chartData : any
 
@@ -27,9 +27,8 @@ export class ChartComponent implements OnInit {
     this.chartData = {
       type: ChartType.PieChart,
       data:  [
-        ["Total ToDo" , this.totalGroupe],
-        ["Total ToDo terminée" , this.totalGroupe],
-        ["Total ToDo non terminée" , this.totalGroupe],
+        ["Total ToDo terminée" , this.totalEnded],
+        ["Total ToDo non terminée" , this.totalNotEnded],
       ],
       width: 1000,
       height: 400
