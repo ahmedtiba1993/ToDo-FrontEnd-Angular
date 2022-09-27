@@ -30,8 +30,7 @@ export class HttpInterceptorService implements HttpInterceptor{
 
     const authRep = req.clone({
       headers: new HttpHeaders({
-        'Access-Control-Allow-Origin':'*',
-        Authorization : 'Bearer '+authenticationResponse.accessToken
+        Authorization : 'Bearer ' + authenticationResponse.accessToken
       })
     });
     return this.handleRequest(authRep , next)

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { StatistiqueService } from 'src/app/services/statistique/statistique.service';
@@ -17,7 +18,8 @@ export class HeaderComponent implements OnInit {
   constructor(    
     private userService : UserService,
     private router : Router,
-    public translate: TranslateService
+    public translate: TranslateService,
+    @Inject(DOCUMENT) private document: Document
   ) {
     translate.addLangs(['fr', 'en']);
     translate.setDefaultLang('fr');
@@ -27,6 +29,11 @@ export class HeaderComponent implements OnInit {
     this.connectedUser = this.userService.getConnectedUser();
   }
 
+  sidebarToggle()
+  {
+    //toggle sidebar function
+    this.document.body.classList.toggle('toggle-sidebar');
+  }
   logout(){
     localStorage.clear()
   }

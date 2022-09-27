@@ -22,7 +22,6 @@ openPDF(){
 });
 }
 
-
 downloadPDF(): void {
   let DATA: any = document.getElementById('htmlData');
   html2canvas(DATA).then((canvas) => {
